@@ -17,7 +17,6 @@ dist-ssr
 !.vscode/extensions.json
 ClaudeAI-SIP
 SimpleSIP
-README.md
 .idea
 .DS_Store
 *.suo
