@@ -20,3 +20,6 @@ Currently, two official plugins are available:
 Built in 
 # React + vite 
 >>>>>>> ed113f6 (update readme file.)
+
+This project is in progress.
+Login/Register is not supported yet. 
