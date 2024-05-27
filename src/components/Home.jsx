@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Legend ,Tooltip, ResponsiveContainer } from 'recharts';
 import { Link } from "react-router-dom";
+import StockDashboard from "./ExploreSection/StocksDashborad";
 
 
 export default function Home() {
@@ -86,8 +87,8 @@ export default function Home() {
   return (
     <div className="grid grid-rows-3 w-full gap-3">
     <section className="w-full mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-1 flex-wrap justify-center py-8">
-      <section className="w-full bg-blue-500 text-white p-10 rounded-lg mb-8">
+      <div className="flex flex-wrap justify-center py-8">
+      <section className="w-full bg-blue-500 text-white p-10 rounded-lg">
         <h1 className="text-3xl font-bold mb-4">
           Calculate your wealth potential
         </h1>
@@ -101,6 +102,10 @@ export default function Home() {
           Get Started
         </a>
       </section>
+      <div className="flex">
+        {/*Stocks & Mf carousel */}
+         <StockDashboard/>
+      </div>
       </div>
       {/* SIP Calculator Section */}
       <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-white">
@@ -387,9 +392,10 @@ export default function Home() {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-    <Legend />
-  </PieChart>
-</ResponsiveContainer>
+                  <Legend />
+                  <Tooltip />
+                 </PieChart>
+       </ResponsiveContainer>
             </div>
             <a
               href="#"
@@ -400,10 +406,11 @@ export default function Home() {
           </div>
         )}
       </section>
-    </section>
+      </section>
       {/* Add other sections */}
+      <div className="grid grid-rows-12 gap-2">
       
-      <div className="text-center w-[560px] md:w-[620px] mr-12 ml-5 space-y-4">
+      <div className="row-span-9 text-center content-center w-[200px] md:w-[620px] mr-12 ml-5 dark:text-white space-y-4 bg-[#A39BA8] border-2 border-black rounded-lg">
       <h2><strong>SIP Calculator – Systematic Investment Plan Calculator</strong></h2>
       <p><span className="font-medium">
         Prospective investors can think that SIPs and mutual funds are the same.
@@ -451,8 +458,7 @@ export default function Home() {
 <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
 It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
-
-    
+      </div>
     </div>
   );
 }
