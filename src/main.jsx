@@ -2,9 +2,9 @@ import React  from "react";
 import ReactDOM from "react-dom/client";
 
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import Routes from "./components/Routes";
+import ThemeProvider from "./components/ThemeProvider/theme-provider";
 import "./index.css";
-import { NextUIProvider } from "@nextui-org/react";
+
 import {
   Route,
   RouterProvider,
@@ -32,10 +32,10 @@ const router = new createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <NextUIProvider>
-    
-    <RouterProvider router={router} />
-    
-    </NextUIProvider>
+      <ErrorBoundary>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <RouterProvider router={router} />
+        </ThemeProvider>
+      </ErrorBoundary>
   </React.StrictMode>
 );

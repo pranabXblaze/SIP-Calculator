@@ -4,13 +4,12 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 export default function Layout() {
+
   return (
-    <div className="bg-[#E5E5E5] min-w-[520px] sm:w-full">
+      <div className="w-[440px] sm:w-full min-h-screen ">
       <Header />
-      <div className="flex">
         <Outlet />
-      </div>
       <Footer />
-    </div>
+      </div>
   );
 }

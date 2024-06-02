@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { ModeToggle } from "./mode-toggle";
 
 export default function Header() {
 
@@ -22,20 +22,17 @@ export default function Header() {
                 Explore
               </a>
             </li>
-          
           </ul>
-          <div className="flex justify-end">
+          <div className="flex justify-end space-x-2">
             <Link
               className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-l flex align-middle text-center min-h-[2px] text-white py-2 px-4 rounded-lg"
               to="/loginSignup"
             >
               Login/Signup
             </Link>
-          
-            <div>
-      <button ><MdLightMode/></button>
-      <button ><MdDarkMode/></button>
-    </div>
+            <div className="flex">
+            <ModeToggle/>
+            </div>
           </div>
         </nav>
       </header>

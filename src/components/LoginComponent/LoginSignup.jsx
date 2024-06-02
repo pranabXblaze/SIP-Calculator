@@ -58,7 +58,7 @@ function LoginSignup() {
       <div className="form login">
         <form>
           <h1>Login</h1>
-          <div className="input-box">
+          <div className="input-box text-gray-700">
             <input
               type="text"
               name="email"
