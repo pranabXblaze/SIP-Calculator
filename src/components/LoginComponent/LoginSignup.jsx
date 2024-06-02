@@ -111,7 +111,7 @@ function LoginSignup() {
         </form>
       </div>
 
-      <div className="form register">
+      <div className="form register text-gray-700">
         <form>
           <h1>Registration</h1>
           <div className="input-box">
