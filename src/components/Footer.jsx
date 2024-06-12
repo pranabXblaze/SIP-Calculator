@@ -2,16 +2,56 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="mx-auto flex h-[200px] w-full px-5 py-5">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#CAF0F8" fill-opacity="1" 
-      d="M0,320L48,314.7C96,309,192,299,288,250.7C384,203,480,117,576,122.7C672,128,768,224,864,250.7C960,277,1056,235,1152,186.7C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-       </path>
-      </svg>
-      <footer className=" container flex justify-between shadow-lg">
-        <div className="px-4 py-4 items-end justify-center">SIP Calculator</div>
-        <div>&copy; Copyright 2024</div>
-        <div className="px-5 py-5">Made with ❤️ by Pranab Kumar</div>
-      </footer>
-    </div>
+    <footer className="w-full py-8 my-4 bg-blue-400 text-gray-200">
+     <div className="bg-[#727a9a] max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:px-4 lg:px-6 rounded-lg shadow-xl">
+        <div className="px-4 py-4">
+          <h2 className="text-white font-semibold text-lg mb-4">About Me</h2>
+          <p className="mb-4">
+            Hello, I'am Pranab Kumar , an aspiring web developer specialising in react.
+             This is a learning project developed by me.
+          </p>
+        </div>
+        <div className="px-4 py-4 "> 
+          <h2 className="text-white font-semibold text-lg mb-4">Quick Links</h2>
+          <ul>
+            <li>
+              <a href="/" className="hover:textwhite transition-colors duration-300">Home</a>
+            </li>
+            <li>
+              <a href="/stocks" className="hover:textwhite transition-colors duration-300">Stocks</a>
+            </li>
+            <li>
+              <a href="/mutual-funds" className="hover:textwhite transition-colors duration-300">Mutual Funds</a>
+            </li>
+          </ul>
+        </div>
+        <div className="px-4 py-4">
+          <h2 className="text-white font-semibold text-lg mb-4">Follow Me</h2>
+          <div className="flex space-x-4">
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              Github
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              Twitter
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div className="px-4 py-4">Made with ❤️ by Pranab Kumar</div>
+        <p className="mb-4">&copy; Funds, Stocks & SIP Calculator Copyright 2024</p>
+      </div>
+     
+    </footer>
   );
 }

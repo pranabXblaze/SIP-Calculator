@@ -15,15 +15,15 @@ import {
 import Layout from "./Layout";
 import Home from "./components/Home";
 import LoginSignup from "./components/LoginComponent/LoginSignup";
-import Explore from "./components/ExploreSection/Explore/Explore";
+import Stocks from "./components/ExploreSection/Explore/Stocks";
 import "./index.css";
 
 const router = new createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/loginSignup" element={<LoginSignup />} />
-      <Route path="/explore" element={<Explore />}/>
+      <Route path="/stocks" element={<Stocks />}/>
     </Route>
   )
 );

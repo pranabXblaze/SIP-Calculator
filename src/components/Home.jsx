@@ -98,7 +98,7 @@ export default function Home() {
         </p>
         <a
           href="#calculator"
-          className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-100"
+          className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started
         </a>
@@ -109,11 +109,11 @@ export default function Home() {
       </div>
       </div>
       </section>
-      <div className="grid grid-rows-12 gap-2">
-      {/* <ScrollShadow hideScrollBar className="w-[720px] h-[400px]"> */}
-      <div className="row-span-9 text-center w-[320px] sm:h-full sm:w-[620px] mx-auto space-y-4 bg-[#A39BA8] border-black rounded-lg">
+      <div className="grid grid-rows-9 gap-2">
+      
+      <div className="row-span-5 text-center w-[320px] sm:h-full sm:w-[620px] mx-auto bg-slate-500 border-none space-y-2 rounded-lg p-4 shadow-xl">
       <h2><strong>SIP Calculator – Systematic Investment Plan Calculator</strong></h2>
-      <p><span className="font-medium">
+      <p><span className="font-medium">   
         Prospective investors can think that SIPs and mutual funds are the same.
          However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. 
          A&nbsp;</span>SIP calculator<span className="font-medium">&nbsp;is a tool that helps you determine the returns you can avail when parking your funds in such investment tools. Systematic Investment Plan or 
@@ -159,14 +159,13 @@ export default function Home() {
 <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
 It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
-      {/* </ScrollShadow> */}
-      <div className="row-span-3 flex justify-center">
+      <div className="row-span-4 flex justify-center">
         {/* This will contain the latest MUTUAL funds*/}
         <TempStock/>
       </div>
       </div>
       {/* SIP Calculator Section */}
-      <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-white">
+      <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-slate-200">
       <div className="flex justify-start">
       <Link
               className={`hover:underline text-black font-semibold py-4 px-6 my-3 mx-4 rounded-xl text-center ${
@@ -199,7 +198,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={sipAmount}
                 onChange={(e) => setSipAmount(e.target.value)}
                 placeholder="Enter amount"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
             <div>
@@ -215,7 +214,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={expectedReturns}
                 onChange={(e) => setExpectedReturns(e.target.value)}
                 placeholder="Enter amount in percentage"
-                className= "w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className= "w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
             <div>
@@ -231,7 +230,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={investmentPeriod}
                 onChange={(e) => setInvestmentPeriod(e.target.value)}
                 placeholder="Enter amount in years"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
             <div>
@@ -247,7 +246,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={inflationRate}
                 onChange={(e) => setInflationRate(e.target.value)}
                 placeholder="Enter amount in percentage"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
             <div>
@@ -263,7 +262,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={startMonth}
                 onChange={(e) => setStartMonth(e.target.value)}
                 placeholder="Enter month"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
             <div>
@@ -279,7 +278,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value)}
                 placeholder="Enter"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 dark:text-gray-400"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
               />
             </div>
           </div>
