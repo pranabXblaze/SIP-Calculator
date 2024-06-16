@@ -1,9 +1,10 @@
 import React from 'react'
-import { useEffect,useState,useId } from 'react';
+import { useEffect,useState } from 'react';
 import StockCard from './StockCard'
+import { InfinitySpin } from 'react-loader-spinner';
 export default function TempStock() {
-    
     const [stockData, setStockData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const symbols = [
         '^NSEI', '^BSESN', '^NSEBANK', '^CNXIT', '^CNXPHARMA', '^CNXFMCG', 
         '^CNXAUTO', '^CNXENERGY', '^CNXREALTY', 'RELIANCE.NS', 'TCS.NS', 
@@ -14,8 +15,6 @@ export default function TempStock() {
         'ULTRACEMCO.NS'
     ];
     
-
-
     const indices = {
         '^NSEI' : 'Nifty50',
          '^BSESN':'BSESensex' , 
@@ -58,16 +57,18 @@ export default function TempStock() {
                     const result = await response.json();
                     return result;
                 }));
-               
+               setLoading(false);
                 setStockData(data);
             } catch (error) {
                 console.error("Error fetching stock data", error);
             }
         };
-  
         fetchData();
     }, []);
-  return (
+ 
+   
+  if (!loading)
+    return (
     <div className='flex flex-wrap justify-center'>
     {
         stockData.map((stock,key) => (
@@ -81,4 +82,13 @@ export default function TempStock() {
 }
     </div>
   )
+  else {
+    return (
+        <InfinitySpin
+            visible={true}
+            width="300"
+            color="#4fa94d"
+            ariaLabel="infinity-spin-loading"
+            />)
+  }
 }

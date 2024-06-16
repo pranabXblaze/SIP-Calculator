@@ -53,7 +53,7 @@ function LoginSignup() {
 
   return (
     <div
-      className={`wrapper flex h-[480px] w-[420px] p-6 my-5 ${active} items-center justify-center`}
+      className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
     >
       <div className="form login">
         <form>

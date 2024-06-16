@@ -2,7 +2,8 @@ import express from 'express';
 import yahooFinance from 'yahoo-finance2';
 import cors from 'cors';
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000 ;
+const hostname = '' //hostname
 
 app.use(cors());
 

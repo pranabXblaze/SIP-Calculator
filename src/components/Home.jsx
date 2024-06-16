@@ -159,9 +159,9 @@ export default function Home() {
 <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
 It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
-      <div className="row-span-4 flex justify-center">
+      <div className="row-span-4 flex justify-center items-center">
         {/* This will contain the latest MUTUAL funds*/}
-        <TempStock/>
+         <TempStock/>
       </div>
       </div>
       {/* SIP Calculator Section */}
@@ -400,7 +400,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
             </div>
           </div>
 
-          <div className="flex justify-start mt-4">
+          <div className="flex justify-center my-4 space-x-2">
             <button
               type="button"
               className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mr-2"
