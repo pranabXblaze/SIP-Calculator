@@ -39,23 +39,23 @@ export default function StockDashboard() {
   const [stockData, setStockData] = useState([]);
   const symbols = ['^NSEI', '^BSESN', '^NSEBANK', 'TCS.NS'];
 
-  useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const data = await Promise.all(symbols.map(async (symbol) => {
-                  const response = await fetch(`http://localhost:5000/api/stock?symbol=${symbol}`);
-                  const result = await response.json();
-                  return result;
-              }));
+  // useEffect(() => {
+  //     const fetchData = async () => {
+  //         try {
+  //             const data = await Promise.all(symbols.map(async (symbol) => {
+  //                 const response = await fetch(`http://localhost:5000/api/stock?symbol=${symbol}`);
+  //                 const result = await response.json();
+  //                 return result;
+  //             }));
 
-              setStockData(data);
-          } catch (error) {
-              console.error("Error fetching stock data", error);
-          }
-      };
+  //             setStockData(data);
+  //         } catch (error) {
+  //             console.error("Error fetching stock data", error);
+  //         }
+  //     };
 
-      fetchData();
-  }, []);
+  //     fetchData();
+  // }, []);
 
   return (
     <div className='grid'>

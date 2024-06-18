@@ -39,7 +39,7 @@ export default function TempStock() {
   'LT.NS':'Larsen & Toubro (L&T)',
   'HCLTECH.NS':'HCL Technologies',
   'AXISBANK.NS':'Axis Bank',
-  'M&M.NS':'Mahindra & Mahindra',
+  'M':'Mahindra & Mahindra',
   'BAJFINANCE.NS':'Bajaj Finance',
   'TITAN.NS':'Titan Company',
   'WIPRO.NS':'Wipro',

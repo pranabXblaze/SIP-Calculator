@@ -161,13 +161,14 @@ export default function Home() {
 <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
 It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
-      <div className="row-span-4 flex justify-center items-center">
+      <div className="row-span-4 flex flex-col justify-center items-center">
         {/* This will contain the latest MUTUAL funds*/}
+        <h2 className="text-slate-600 font-extrabold mb-10 underline">Relevant Stocks</h2>
          <TempStock/>
       </div>
       </div>
       {/* SIP Calculator Section */}
-      <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-slate-200">
+      <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-white">
       <div className="flex justify-start">
       <Link
               className={`hover:underline text-black font-semibold py-4 px-6 my-3 mx-4 rounded-xl text-center ${
