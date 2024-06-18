@@ -3,11 +3,11 @@ import yahooFinance from 'yahoo-finance2';
 import cors from 'cors';
 const app = express();
 const port = 5000 ;
-const hostname = '' //hostname
+
 
 app.use(cors());
 
-app.get('/api/stock', async (req, res) => {
+app.get('/api/stock',async (req, res) => {
     const symbol = req.query.symbol;
 
     try {

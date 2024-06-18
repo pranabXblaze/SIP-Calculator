@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StockDashboard from "./ExploreSection/StocksDashboard";
 
 import TempStock from "./ExploreSection/TempStock";
+import { PackagePlus } from "lucide-react";
 
 export default function Home() {
   const [sipAmount, setSipAmount] = useState(1000);
@@ -97,7 +98,7 @@ export default function Home() {
           Start investing with a Systematic Investment Plan
         </p>
         <a
-          href="#calculator"
+          href={userLoggedin ? "#calculator" : <p className="text-gray-500 font-medium">Please Login/Register to use the calculator. </p>}
           className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started

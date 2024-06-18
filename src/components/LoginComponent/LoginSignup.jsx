@@ -2,18 +2,20 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import React from "react";
+import React,{useState} from "react";
 import { FaLock, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
 
 function LoginSignup() {
   const [active, setActive] = React.useState("");
+  const [isValid, setIsValid] = useState(true);
   const [registerEmail, setRegisterEmail] = React.useState("");
   const [loginEmail, setLoginEmail] = React.useState("");
   const [registerPassword, setRegisterPassword] = React.useState("");
   const [loginPassword, setLoginPassword] = React.useState("");
   const [showPasword, setShowPasword] = React.useState(false);
+  
   const registerLink = () => {
     setActive("active");
   };
@@ -26,6 +28,18 @@ function LoginSignup() {
     setShowPasword(!showPasword);
   };
 
+  const handleChange_l = (e) => {
+    const value = e.target.value;
+    setLoginPassword(value);
+    setIsValid(value.length >= 6); // 6 is min length for firebase authentication
+  };
+  
+  const handleChange_r = (e) => {
+    const value = e.target.value;
+    setRegisterPassword(value);
+    setIsValid(value.length >= 6); // 6 is min length for firebase authentication
+  };
+
   const handleLogin = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -33,6 +47,7 @@ function LoginSignup() {
         loginEmail,
         loginPassword
       );
+      console.log(user);
     } catch (error) {
       throw error;
     }
@@ -71,10 +86,14 @@ function LoginSignup() {
               type={showPasword ? "text" : "password"}
               name="Password"
               placeholder="Password"
-              onChange={(e) => setLoginPassword(e.target.value)}
+              minLength='6'
+              onChange={handleChange_l}
               required
             />
             <FaLock className="absolute right-5 bottom-24 translate-y-1/2 font-light" />
+            <div>
+            {!isValid && <p className="text-red-500 mt-2">Password must be at least 6 characters long.</p>}
+            </div>
             <label htmlFor="toggle" className="text-center">
               <input
                 type="checkbox"
@@ -94,7 +113,7 @@ function LoginSignup() {
           </div>
 
           <button
-            onClick={handleLogin()}
+            onClick={handleLogin}
             className="bg-slate-400 hover:bg-slate-500"
           >
             Login{" "}
@@ -131,13 +150,15 @@ function LoginSignup() {
             />
             <FaRegEnvelope className="relative left-5 bottom-14 translate-y-1/2 font-light" />
             <input
-              type="password"
+              type={showPasword ? "text" : "password"}
               name="Password"
               placeholder="Password"
-              onChange={(e) => setRegisterPassword(e.target.value)}
+              minLength='6'
+              onChange={handleChange_r}
               required
             />
             <FaLock className="relative left-5 bottom-14 translate-y-1/2 font-light" />
+            <div>{!isValid && <p className="text-red-500 mt-2">Password must be at least 6 characters long.</p>}</div>
             <label htmlFor="toggle" className="text-center">
               <input
                 type="checkbox"
@@ -158,7 +179,7 @@ function LoginSignup() {
           </div>
 
           <button
-            onClick={handleRegister()}
+            onClick={handleRegister}
             className=" bg-slate-400 hover:bg-slate-500"
           >
             Register
