@@ -53,7 +53,7 @@ export default function TempStock() {
                 const data = await Promise.all(
                     Object.keys(indices)
                     .map(async (symbol) => {
-                    const response = await fetch(`http://localhost:5000/api/stock?symbol=${symbol}`);
+                    const response = await fetch(`https://hmf3pjregg.ap-southeast-2.awsapprunner.com/api/stock?symbol=${symbol}`);
                     const result = await response.json();
                     return result;
                 }));

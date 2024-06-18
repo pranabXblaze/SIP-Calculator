@@ -98,7 +98,8 @@ export default function Home() {
           Start investing with a Systematic Investment Plan
         </p>
         <a
-          href={userLoggedin ? "#calculator" : <p className="text-gray-500 font-medium">Please Login/Register to use the calculator. </p>}
+          // href={userLoggedin ? "#calculator" : <p className="text-gray-500 font-medium">Please Login/Register to use the calculator. </p>}
+          href="#calculator"
           className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started
