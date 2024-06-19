@@ -1,8 +1,9 @@
 import React from 'react'
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useId } from 'react';
 import StockCard from './StockCard'
 import { InfinitySpin } from 'react-loader-spinner';
 export default function TempStock() {
+    const id = useId();
     const [stockData, setStockData] = useState([]);
     const [loading, setLoading] = useState(true);
     const symbols = [
@@ -70,10 +71,10 @@ export default function TempStock() {
   if (!loading)
     return (
     <div className='flex flex-wrap justify-center'>
-    {
+    {      
         stockData.map((stock,key) => (
             <StockCard 
-            key={stock.id}
+            key={id}
             indexName={indices[stock.indexName]}
             currentValue={stock.currentValue}
             changePercentage={stock.changePercentage}
