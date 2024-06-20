@@ -1,5 +1,5 @@
-
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
 import {
   Menubar,
@@ -54,37 +54,36 @@ export default function Header() {
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link to='/'>
+          <NavLink to='/'    
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} hover:bg-gray-50 lg:hover:bg-transparent hover:text-orange-700`
+                     }>
           Home
-          </Link>
+          </NavLink>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Explore</MenubarTrigger>
+        <MenubarTrigger>
+        <NavLink to={'/stocks' || '/news'}   
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} hover:bg-gray-50 lg:hover:bg-transparent hover:text-orange-700`
+                    }>
+          Explore
+          </NavLink>
+        </MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            <Link to='/stocks'>
-            Stocks
-            </Link>
+          <NavLink to='/stocks'    
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} border-b hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                     }>
+          Stocks
+          </NavLink>
           </MenubarItem>
           <MenubarItem>
-         <Link to='/mutual-funds'>
-         Mutual Funds
-         </Link>
+          <NavLink to='/news'    
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} border-b hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                     }>
+          Latest Buzz
+          </NavLink>
           </MenubarItem>
-          <MenubarSeparator />
-          <MenubarSub>
-            <MenubarSubTrigger>Find</MenubarSubTrigger>
-            <MenubarSubContent>
-              <MenubarItem>Search the web</MenubarItem>
-              <MenubarSeparator />
-              <MenubarItem>Find...</MenubarItem>
-              <MenubarItem>Find Next</MenubarItem>
-              <MenubarItem>Find Previous</MenubarItem>
-            </MenubarSubContent>
-          </MenubarSub>
-          <MenubarSeparator />
-      
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
@@ -94,22 +93,11 @@ export default function Header() {
           <MenubarCheckboxItem checked>
             Always Show Full URLs
           </MenubarCheckboxItem>
-          <MenubarSeparator />
-          <MenubarItem inset>
-            Reload <MenubarShortcut>⌘R</MenubarShortcut>
-          </MenubarItem>
-          <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
-          </MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem inset>Toggle Fullscreen</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem inset>Hide Sidebar</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Profiles</MenubarTrigger>
-        <MenubarContent>
+        {/* <MenubarTrigger>Profiles</MenubarTrigger> */}
+        {/* <MenubarContent>
           <MenubarRadioGroup value="benoit">
             <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
             <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
@@ -119,7 +107,7 @@ export default function Header() {
           <MenubarItem inset>Edit...</MenubarItem>
           <MenubarSeparator />
           <MenubarItem inset>Add Profile...</MenubarItem>
-        </MenubarContent>
+        </MenubarContent> */}
       </MenubarMenu>
     </Menubar>
     <div className="flex">

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import StockDashboard from "./ExploreSection/StocksDashboard";
 
 import TempStock from "./ExploreSection/TempStock";
-import { PackagePlus } from "lucide-react";
+import ReactTypingEffect from "react-typing-effect";
+
+
 
 export default function Home() {
   const [sipAmount, setSipAmount] = useState(1000);
@@ -18,7 +20,7 @@ export default function Home() {
   const [totalReturns, setTotalReturns] = useState(0);
   const [activeSIP, setActiveSIP] = useState(true);
   const [activeLump, setActiveLump] = useState(false);
-
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); 
   const chartRef = useRef(null);
 
   const handleHighlight = () => {
@@ -36,8 +38,12 @@ export default function Home() {
     const expectedReturnsNum = parseFloat(expectedReturns) / 100;
     const investmentPeriodNum = parseFloat(investmentPeriod);
     const inflationRateNum = parseFloat(inflationRate) / 100;
-
-    const investedAmountCalc = sipAmountNum * 12 * investmentPeriodNum;
+    let investedAmountCalc;
+    if(activeSIP) 
+      {investedAmountCalc = sipAmountNum * 12 * investmentPeriodNum;}
+    else{
+      investedAmountCalc = sipAmountNum;
+    }
     const maturityValueCalc = calculateMaturityValue(
       sipAmountNum,
       expectedReturnsNum,
@@ -90,20 +96,42 @@ export default function Home() {
     <div className="flex flex-col w-full">
     <section className="w-full px-4 py-8">
       <div className="flex flex-wrap justify-center py-8">
-      <section className="w-full bg-blue-500 text-white p-10 rounded-lg">
-        <h1 className="text-3xl font-bold mb-4">
-          Calculate your wealth potential
-        </h1>
-        <p className="mb-6">
-          Start investing with a Systematic Investment Plan
+      <section className="flex flex-col w-full bg-primary text-white p-10 rounded-lg">
+          <ReactTypingEffect
+             className="text-5xl justify-center font-bold my-8"
+              text={['Calculate', 'wealth potential, NOW!']}
+              speed={100}
+              eraseSpeed={100}
+              eraseDelay={1000}
+              cursorRenderer ={ (cursor) => (<h1>{cursor}</h1>)}
+              cursorClassName='text-gray-500'
+              displayTextRenderer={(text, i) => 
+               (
+                 <h1>
+                       {text.split('').map((char, i) => {
+                         const key = `${i}`;
+                         return (
+                           <span
+                             key={key}
+                             
+                           >{char}</span>
+                         );
+                       })}
+                     </h1>
+               )
+               }
+          />
+          
+        <p className="mb-6 text-2xl">
+          Start investing with a Systematic Investment Plan.
         </p>
-        <a
-          // href={userLoggedin ? "#calculator" : <p className="text-gray-500 font-medium">Please Login/Register to use the calculator. </p>}
-          href="#calculator"
-          className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
+        <Link
+          to={'loginsignup'}
+          //href="#calculator"
+          className="w-1/3 text-center bg-secondary text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started
-        </a>
+        </Link>
       </section>
       <div className="flex my-4 mx-4">
         {/*Stocks & Mf carousel */}
@@ -113,7 +141,7 @@ export default function Home() {
       </section>
       <div className="grid grid-rows-9 gap-2">
       
-      <div className="row-span-5 text-center w-[320px] h-2/3 sm:h-full sm:w-[620px] mx-auto bg-slate-500 border-none space-y-2 rounded-lg p-4 shadow-xl">
+      <div className="row-span-5 text-center w-[320px] h-2/3 sm:h-full sm:w-[620px] mx-auto bg-secondary border-none space-y-2 rounded-lg p-4 shadow-xl">
       <h2><strong>SIP Calculator – Systematic Investment Plan Calculator</strong></h2>
       <p><span className="font-medium">   
         Prospective investors can think that SIPs and mutual funds are the same.
@@ -163,12 +191,35 @@ It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
       <div className="row-span-4 flex flex-col justify-center items-center">
         {/* This will contain the latest MUTUAL funds*/}
-        <h2 className="text-slate-600 font-extrabold mb-10 underline">Relevant Stocks</h2>
+        {/* <h2 className="text-slate-600 font-extrabold mb-10 underline">Relevant Stocks</h2> */}
+        <ReactTypingEffect
+             className="text-5xl justify-center font-bold my-8"
+              text={['Relevant Stocks...','Sign up to continue.']}
+              speed={100}
+              eraseSpeed={100}
+              eraseDelay={1000}
+              cursorRenderer ={ (cursor) => (<h1>{cursor}</h1>)}
+              cursorClassName='text-gray-500'
+              displayTextRenderer={(text, i) => 
+               (
+                 <h1>
+                       {text.split('').map((char, i) => {
+                         const key = `${i}`;
+                         return (
+                           <span
+                             key={key}
+                           >{char}</span>
+                         );
+                       })}
+                     </h1>
+               )
+               }
+          />
          <TempStock/>
       </div>
       </div>
       {/* SIP Calculator Section */}
-      <section id="calculator" className="mb-8 shadow-lg rounded-xl border-none outline-2 bg-white">
+      <section id="calculator" className="mb-8 shadow-xl shadow-slate-600 rounded-xl border-none outline-2 bg-accent">
       <div className="flex justify-start">
       <Link
               className={`hover:underline text-black font-semibold py-4 px-6 my-3 mx-4 rounded-xl text-center ${
@@ -188,12 +239,12 @@ It may increase or decrease, which will change the estimated returns.</span></p>
             </Link>
           </div>
         <h2 className="text-2xl p-4 font-bold mb-4">SIP Calculator</h2>
-        {(activeSIP) && (
+         
           <form>
           <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="sip-amount" className="block font-medium mb-2">
-                Monthly SIP Amount:
+                {activeSIP ? "Monthly Sip Amount" : "Total Investment"}
               </label>
               <input
                 type="number"
@@ -201,7 +252,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={sipAmount}
                 onChange={(e) => setSipAmount(e.target.value)}
                 placeholder="Enter amount"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
             <div>
@@ -217,7 +268,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={expectedReturns}
                 onChange={(e) => setExpectedReturns(e.target.value)}
                 placeholder="Enter amount in percentage"
-                className= "w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className= "w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
             <div>
@@ -233,7 +284,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={investmentPeriod}
                 onChange={(e) => setInvestmentPeriod(e.target.value)}
                 placeholder="Enter amount in years"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
             <div>
@@ -249,7 +300,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={inflationRate}
                 onChange={(e) => setInflationRate(e.target.value)}
                 placeholder="Enter amount in percentage"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
             <div>
@@ -265,7 +316,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={startMonth}
                 onChange={(e) => setStartMonth(e.target.value)}
                 placeholder="Enter month"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
             <div>
@@ -281,7 +332,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value)}
                 placeholder="Enter"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
+                className="w-1/2 border border-gray-300 rounded-md py-2 px-3 bg-background"
               />
             </div>
           </div>
@@ -303,129 +354,11 @@ It may increase or decrease, which will change the estimated returns.</span></p>
             </button>
           </div>
         </form>
-        )
-        }
-        {(activeLump) && (
-          <form>
-          <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="sip-amount" className="block font-medium mb-2">
-                Total Investment:
-              </label>
-              <input
-                type="number"
-                id="sip-amount"
-                value={sipAmount}
-                onChange={(e) => setSipAmount(e.target.value)}
-                placeholder="Enter amount"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="expected-return"
-                className="block font-medium mb-2"
-              >
-                Expected Return:
-              </label>
-              <input
-                type="number"
-                id="expected-return"
-                value={expectedReturns}
-                onChange={(e) => setExpectedReturns(e.target.value)}
-                placeholder="Enter amount in percentage"
-                className= "w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="investment-period"
-                className="block font-medium mb-2"
-              >
-                Investment Period:
-              </label>
-              <input
-                type="number"
-                id="investment-period"
-                value={investmentPeriod}
-                onChange={(e) => setInvestmentPeriod(e.target.value)}
-                placeholder="Enter amount in years"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="inflation-rate"
-                className="block font-medium mb-2"
-              >
-                Inflation Rate:
-              </label>
-              <input
-                type="number"
-                id="inflation-rate"
-                value={inflationRate}
-                onChange={(e) => setInflationRate(e.target.value)}
-                placeholder="Enter amount in percentage"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="sip-start-month"
-                className="block font-medium mb-2"
-              >
-                Start Month:
-              </label>
-              <input
-                type="month"
-                id="sip-start-month"
-                value={startMonth}
-                onChange={(e) => setStartMonth(e.target.value)}
-                placeholder="Enter month"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="sip-start-year"
-                className="block font-medium mb-2"
-              >
-                Start Year:
-              </label>
-              <input
-                type="number"
-                id="sip-start-year"
-                value={startYear}
-                onChange={(e) => setStartYear(e.target.value)}
-                placeholder="Enter"
-                className="w-1/2 border border-gray-300 rounded-md py-2 px-3"
-              />
-            </div>
-          </div>
-
-          <div className="flex justify-center my-4 space-x-2">
-            <button
-              type="button"
-              className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mr-2"
-              onClick={handleCalculate}
-            >
-              Calculate
-            </button>
-            <button
-              type="button"
-              className="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
-              onClick={handleReset}
-            >
-              Reset
-            </button>
-          </div>
-        </form>
-        )}
-        
+        {/*Result Tab*/}
         {(investedAmount !== 0 ||
           maturityValue !== 0 ||
           totalReturns !== 0) && (
-          <div id="result" className="bg-gray-100 p-6 rounded-lg mt-6">
+          <div id="result" className="bg-gray-100 p-6 rounded-lg mt-6 bg-accent">
             <h3 className="text-xl font-bold mb-4">Calculation Result</h3>
             <p className="text-lg">
               Invested Amount: ₹{investedAmount.toFixed(2)}
@@ -458,7 +391,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
        </ResponsiveContainer>
             </div>
             <a
-              href="#"
+              href="#calculator"
               className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4 inline-block"
             >
               View SIP Schedule
@@ -466,7 +399,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
           </div>
         )}
       </section>
-     
+      
     </div>
   );
 }

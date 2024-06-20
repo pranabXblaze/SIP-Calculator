@@ -6,17 +6,18 @@ export default function TempStock() {
     const id = useId();
     const [stockData, setStockData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const symbols = [
-        '^NSEI', '^BSESN', '^NSEBANK', '^CNXIT', '^CNXPHARMA', '^CNXFMCG', 
-        '^CNXAUTO', '^CNXENERGY', '^CNXREALTY', 'RELIANCE.NS', 'TCS.NS', 
-        'HDFCBANK.NS', 'INFY.NS', 'ICICIBANK.NS', 'HINDUNILVR.NS', 
-        'KOTAKBANK.NS', 'SBIN.NS', 'BHARTIARTL.NS', 'ASIANPAINT.NS', 
-        'MARUTI.NS', 'LT.NS', 'HCLTECH.NS', 'AXISBANK.NS', 'M&M.NS', 
-        'BAJFINANCE.NS', 'TITAN.NS', 'WIPRO.NS', 'TATAMOTORS.NS', 
-        'ULTRACEMCO.NS'
-    ];
+    // const symbols = [
+    //     '^NSEI', '^BSESN', '^NSEBANK', '^CNXIT', '^CNXPHARMA', '^CNXFMCG', 
+    //     '^CNXAUTO', '^CNXENERGY', '^CNXREALTY', 'RELIANCE.NS', 'TCS.NS', 
+    //     'HDFCBANK.NS', 'INFY.NS', 'ICICIBANK.NS', 'HINDUNILVR.NS', 
+    //     'KOTAKBANK.NS', 'SBIN.NS', 'BHARTIARTL.NS', 'ASIANPAINT.NS', 
+    //     'MARUTI.NS', 'LT.NS', 'HCLTECH.NS', 'AXISBANK.NS', 'M&M.NS', 
+    //     'BAJFINANCE.NS', 'TITAN.NS', 'WIPRO.NS', 'TATAMOTORS.NS', 
+    //     'ULTRACEMCO.NS'
+    // ];
     
     const indices = {
+        //Nitfy symbols
         '^NSEI' : 'Nifty50',
          '^BSESN':'BSESensex' , 
         '^NSEBANK':'NiftyBank',
@@ -26,27 +27,47 @@ export default function TempStock() {
          '^CNXAUTO':'NiftyAuto',
         '^CNXENERGY': 'NiftyEnergy',
         '^CNXREALTY': 'NiftyRealty',
+        //Energy Resources
          'RELIANCE.NS':'Reliance Industries',
+         "ONGC.NS" : 'Oil and Natural Gas Corporation',
+        
+         //Tech & IT
          'TCS.NS':'Tata Consultancy Services (TCS)',
-         'HDFCBANK.NS':'HDFC Bank',
-         'INFY.NS':'Infosys',
-          'ICICIBANK.NS':'ICICI Bank',
-             'HINDUNILVR.NS':'Hindustan Unilever',
-  'KOTAKBANK.NS':'KotakBank',
-'SBIN.NS' :'SBI',
-  'BHARTIARTL.NS':'Bharti Airtel',
-  'ASIANPAINT.NS':'Asian Paints',
-  'MARUTI.NS':'Maruti Suzuki',
-  'LT.NS':'Larsen & Toubro (L&T)',
-  'HCLTECH.NS':'HCL Technologies',
-  'AXISBANK.NS':'Axis Bank',
-  'M':'Mahindra & Mahindra',
-  'BAJFINANCE.NS':'Bajaj Finance',
-  'TITAN.NS':'Titan Company',
-  'WIPRO.NS':'Wipro',
- 'TATAMOTORS.NS':'Tata Motors' ,
-  'ULTRACEMCO.NS':'UltraTech Cement',
-    }
+         'WIPRO.NS':'Wipro',
+       
+         // Banking 
+         'ICICIBANK.NS':'ICICI Bank',
+          'HDFCBANK.NS':'HDFC Bank',
+          'KOTAKBANK.NS':'KotakBank',
+         
+          
+          //Consumer Goods
+          'HINDUNILVR.NS':'Hindustan Unilever',
+          'ITC.NS' : 'ITC Limited',
+          'NESTLEIND.NS' : 'Nestle India',
+          'TATACONSUM.NS' : 'Tata Consumer Products',
+          
+          //Pharma
+          'SUNPHARMA.NS':'Sun Pharmaceutical Industries',
+          'DRREDDY.NS' : "Dr. Reddy's Laboratories",
+          'CIPLA.NS' : 'Cipla Limited',
+         
+           
+          // Automobiles
+          'TATAMOTORS.NS':'Tata Motors' ,
+          'M':'Mahindra & Mahindra',
+          'HEROMOTOCO.NS':'Hero MotoCorp',
+          'MARUTI.NS':'Maruti Suzuki',
+          'BAJAJ-AUTO.NS' : 'Bajaj Auto',
+      
+          
+          //Industrial & Conglomerates 
+          'ADANIPORTS.NS': 'Adani Ports & SEZ',
+          
+          
+         
+        
+      }
   
     useEffect(() => {
         const fetchData = async () => {
@@ -72,15 +93,15 @@ export default function TempStock() {
     return (
     <div className='flex flex-wrap justify-center'>
     {      
-        stockData.map((stock,key) => (
+        stockData.map((stock,key=id) => (
             <StockCard 
-            key={id}
+            key={`${key}`}
             indexName={indices[stock.indexName]}
             currentValue={stock.currentValue}
             changePercentage={stock.changePercentage}
             />
         ))
-}
+    }
     </div>
   )
   else {

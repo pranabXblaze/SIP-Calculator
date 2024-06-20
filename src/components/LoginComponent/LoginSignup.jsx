@@ -2,10 +2,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { FaLock, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
+import ToastComponent from "./ToastComponent";
 
 function LoginSignup() {
   const [active, setActive] = React.useState("");
@@ -15,7 +16,10 @@ function LoginSignup() {
   const [registerPassword, setRegisterPassword] = React.useState("");
   const [loginPassword, setLoginPassword] = React.useState("");
   const [showPasword, setShowPasword] = React.useState(false);
-  
+  const [userLoggedIn , setUserLoggedIn] = React.useState(false);
+  const [userRegistered, setUserRegistered] = React.useState(false);
+  const [showToast, setShowToast] = useState(false);
+
   const registerLink = () => {
     setActive("active");
   };
@@ -48,6 +52,7 @@ function LoginSignup() {
         loginPassword
       );
       console.log(user);
+      setUserLoggedIn(true);
     } catch (error) {
       throw error;
     }
@@ -61,10 +66,21 @@ function LoginSignup() {
         registerPassword
       );
       console.log(user);
+      setUserRegistered(true);
     } catch (error) {
       throw error;
     }
   };
+ TODO : //const handleSignOut
+  useEffect( ()=> {
+    if (userRegistered || userLoggedIn) {
+      setShowToast(!showToast);
+     showToast && (<ToastComponent/>)
+     }
+     else {
+      console.log("User is not logged in");
+     }
+  },[userRegistered,userLoggedIn])
 
   return (
     <div
@@ -159,10 +175,10 @@ function LoginSignup() {
             />
             <FaLock className="relative left-5 bottom-14 translate-y-1/2 font-light" />
             <div>{!isValid && <p className="text-red-500 mt-2">Password must be at least 6 characters long.</p>}</div>
-            <label htmlFor="toggle" className="text-center">
+            <label htmlFor="toggle1" className="text-center">
               <input
                 type="checkbox"
-                id="toogle"
+                id="toogle1"
                 onClick={toggleShowPassword}
                 className="boder-none outline-none rounded-lg bg-slate-100 hover:bg-slate-200"
               />

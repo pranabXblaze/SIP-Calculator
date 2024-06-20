@@ -17,25 +17,23 @@ import Home from "./components/Home";
 import LoginSignup from "./components/LoginComponent/LoginSignup";
 import Stocks from "./components/ExploreSection/Explore/Stocks";
 import "./index.css";
+import NewsFeed from "./components/ExploreSection/Explore/NewsFeed";
+import App from "./App";
 
-const router = new createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/loginSignup" element={<LoginSignup />} />
-      <Route path="/stocks" element={<Stocks />}/>
-    </Route>
-  )
-);
+// const router = new createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Layout />}>
+//       <Route path="/" element={<Home />} />
+//       <Route path="/loginsignup" element={<LoginSignup />} />
+//       <Route path="/stocks" element={<Stocks />}/>
+//       <Route path='/news' element={<NewsFeed/>}/>
+//     </Route>
+//   )
+// );
 
-/* The commented code block is attempting to create a router instance using React Router. Here's a breakdown of what it is doing: */
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <RouterProvider router={router} />
-        </ThemeProvider>
-      </ErrorBoundary>
+        <App/>
   </React.StrictMode>
 );
