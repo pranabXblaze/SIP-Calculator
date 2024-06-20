@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactTypingEffect from 'react-typing-effect'
 import AlertDialogue from './Alert-dialogue';
-import { InfinitySpin } from 'react-loader-spinner'
+import { Skeleton } from "@/components/ui/skeleton"
 import { useId,useState,useEffect } from 'react';
 import StockCard from '../StockCard';
 //Stock Symbols
@@ -142,7 +142,7 @@ export default function Stocks() {
 }, []);
 
   return (
-    <div  className='grid grid-cols-2 md:grid-cols-3 my-8'>
+    <div  className='grid grid-cols-2 md:grid-cols-3 gap-4 my-8'>
     <ReactTypingEffect 
     className='text-6xl font-bold mx-[40px] md:h-1/2 h-[320px]'
      text={['Welcome!!', 'to Share Market']}
@@ -173,7 +173,7 @@ export default function Stocks() {
     Watchlist
     </div>
 
-    <div className='mx-5 my-5 col-span-1 md:col-span-2'>
+    <div className='mx-5 my-20 col-span-1 md:col-span-2'>
     {
      !loading &&  (
       <div className='flex flex-wrap justify-center'>        
@@ -189,12 +189,17 @@ export default function Stocks() {
      )
     } 
      {loading && (
-      <InfinitySpin
-          visible={true}
-          width="300"
-          color="#4fa94d"
-          ariaLabel="infinity-spin-loading"
-      />) 
+      <div className='flex flex-col flex-wrap gap-4'>
+     <Skeleton className="w-[144px] h-[10px] sm:w-[700px] sm:h-[20px] rounded-full"/>
+     <Skeleton className="w-[144px] h-[10px] sm:w-[200px] sm:h-[20px] rounded-full" />  
+     <Skeleton className="w-[160px] h-[10px] sm:w-[600px] sm:h-[30px] rounded-full" />  
+     <Skeleton className="w-[172px] h-[10px] sm:w-[900px] sm:h-[30px] rounded-full" />  
+     <Skeleton className="w-[144px] h-[10px] sm:w-[800px] sm:h-[30px] rounded-full" />  
+     <Skeleton className="w-[144px] h-[10px] sm:w-[700px] sm:h-[30px] rounded-full" />
+     <Skeleton className="w-[144px] h-[10px] sm:w-[900px] sm:h-[30px] rounded-full" />  
+     <Skeleton className="w-[144px] h-[10px] sm:w-[950px] sm:h-[30px] rounded-full" />  
+     </div>
+    ) 
     }
     </div>
 

@@ -141,7 +141,7 @@ export default function Home() {
       </section>
       <div className="grid grid-rows-9 gap-2">
       
-      <div className="row-span-5 text-center w-[320px] h-2/3 sm:h-full sm:w-[620px] mx-auto bg-secondary border-none space-y-2 rounded-lg p-4 shadow-xl">
+      <div className="row-span-5 text-center w-[320px] sm:h-full sm:w-[620px] mx-auto bg-secondary border-none space-y-2 rounded-lg p-4 shadow-xl">
       <h2><strong>SIP Calculator – Systematic Investment Plan Calculator</strong></h2>
       <p><span className="font-medium">   
         Prospective investors can think that SIPs and mutual funds are the same.
