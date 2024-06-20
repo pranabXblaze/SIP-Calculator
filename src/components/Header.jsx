@@ -55,7 +55,7 @@ export default function Header() {
       <MenubarMenu>
         <MenubarTrigger>
           <NavLink to='/'    
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} hover:bg-gray-50 lg:hover:bg-transparent hover:text-orange-700`
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent hover:text-orange-700`
                      }>
           Home
           </NavLink>
@@ -64,7 +64,7 @@ export default function Header() {
       <MenubarMenu>
         <MenubarTrigger>
         <NavLink to={'/stocks' || '/news'}   
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} hover:bg-gray-50 lg:hover:bg-transparent hover:text-orange-700`
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent hover:text-orange-700`
                     }>
           Explore
           </NavLink>
@@ -72,14 +72,14 @@ export default function Header() {
         <MenubarContent>
           <MenubarItem>
           <NavLink to='/stocks'    
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} border-b hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                      }>
           Stocks
           </NavLink>
           </MenubarItem>
           <MenubarItem>
           <NavLink to='/news'    
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} border-b hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                      }>
           Latest Buzz
           </NavLink>
