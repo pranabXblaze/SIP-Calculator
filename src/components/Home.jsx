@@ -358,7 +358,7 @@ It may increase or decrease, which will change the estimated returns.</span></p>
         {(investedAmount !== 0 ||
           maturityValue !== 0 ||
           totalReturns !== 0) && (
-          <div id="result" className="bg-gray-100 p-6 rounded-lg mt-6 bg-accent">
+          <div id="result" className="p-6 rounded-lg mt-6 bg-background">
             <h3 className="text-xl font-bold mb-4">Calculation Result</h3>
             <p className="text-lg">
               Invested Amount: ₹{investedAmount.toFixed(2)}
