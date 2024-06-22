@@ -6,13 +6,14 @@ import Home from "./components/Home";
 import LoginSignup from "./components/LoginComponent/LoginSignup";
 import Stocks from "./components/ExploreSection/Explore/Stocks";
 import NewsFeed from "./components/ExploreSection/Explore/NewsFeed";
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App(){
     const router = new createBrowserRouter(
         createRoutesFromElements(
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/loginsignup" element={<LoginSignup />} />
+            <Route path="/loginsignup" element={<LoginSignup />} /> //ProtectedRoute
             <Route path="/stocks" element={<Stocks />}/>
             <Route path='/news' element={<NewsFeed/>}/>
           </Route>
@@ -20,7 +21,10 @@ export default function App(){
       );
     return(
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            {/* <AuthProvider value={{authStatus, user, handleLogin,handleRegister, handleLogout}}> */}
                 <RouterProvider router={router} />
+            {/* </AuthProvider> */}
             </ThemeProvider>
+
     )
 }

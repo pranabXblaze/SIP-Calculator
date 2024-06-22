@@ -128,7 +128,7 @@ export default function Home() {
         <Link
           to={'loginsignup'}
           //href="#calculator"
-          className="w-1/3 text-center bg-secondary text-blue-500 py-2 px-4 rounded-md hover:bg-blue-200"
+          className="w-1/3 text-center bg-secondary text-blue-200 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started
         </Link>
@@ -168,26 +168,26 @@ export default function Home() {
          <span className="font-medium">&nbsp;is a beneficial tool, which shows the estimated returns you will earn after the investment tenure.</span></p>
          <p><span  className="font-medium">Few of the benefits of SIP calculators include –</span></p>
          <ol>
-<li ><span className="font-medium">Assists you to determine the amount you want to invest in.</span></li>
-<li ><span className="font-medium">Tells you the total amount you have invested.</span></li>
-<li ><span className="font-medium">Gives an estimated value of the returns.</span></li>
-</ol>
-<h2><strong>How do SIP calculators work?</strong></h2>
-<p><span className="font-medium">A SIP plan calculator works on the following formula – </span></p>
-<p><span className="font-medium">M = P × (([1 + i]^n – 1) / i) × (1 + i).</span></p>
-<p><span className="font-medium">In the above formula –</span></p>
-<ul>
-<li><span className="font-medium">M is the amount you receive upon maturity.</span></li>
-<li><span className="font-medium">P is the amount you invest at regular intervals.</span></li>
-<li><span className="font-medium">n is the number of payments you have made.</span></li>
-<li><span className="font-medium">i is the periodic rate of interest.</span></li>
-</ul>
-<p><span className="font-medium">Take for example you want to invest Rs. 1,000 per month for 12 months at a periodic rate of interest of 12%.</span></p>
-<p><span className="font-medium">then the monthly rate of return will be 12%/12 = 1/100=0.01</span></p>
-<p><span >Hence, M = 1,000X (([1 +0.01 ]^{12} – 1) / 0.01) x (1 + 0.01)</span></p>
-<p>which gives Rs 12,809 Rs approximately in a year.</p>
-<p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
-It may increase or decrease, which will change the estimated returns.</span></p>
+         <li ><span className="font-medium">Assists you to determine the amount you want to invest in.</span></li>
+         <li ><span className="font-medium">Tells you the total amount you have invested.</span></li>
+         <li ><span className="font-medium">Gives an estimated value of the returns.</span></li>
+         </ol>
+         <h2><strong>How do SIP calculators work?</strong></h2>
+         <p><span className="font-medium">A SIP plan calculator works on the following formula – </span></p>
+         <p><span className="font-medium">M = P × (([1 + i]^n – 1) / i) × (1 + i).</span></p>
+         <p><span className="font-medium">In the above formula –</span></p>
+         <ul>
+         <li><span className="font-medium">M is the amount you receive upon maturity.</span></li>
+         <li><span className="font-medium">P is the amount you invest at regular intervals.</span></li>
+         <li><span className="font-medium">n is the number of payments you have made.</span></li>
+         <li><span className="font-medium">i is the periodic rate of interest.</span></li>
+         </ul>
+         <p><span className="font-medium">Take for example you want to invest Rs. 1,000 per month for 12 months at a periodic rate of interest of 12%.</span></p>
+         <p><span className="font-medium">then the monthly rate of return will be 12%/12 = 1/100=0.01</span></p>
+         <p><span >Hence, M = 1,000X (([1 +0.01 ]^{12} – 1) / 0.01) x (1 + 0.01)</span></p>
+         <p>which gives Rs 12,809 Rs approximately in a year.</p>
+         <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
+          It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
       <div className="row-span-4 flex flex-col justify-center items-center">
         {/* This will contain the latest MUTUAL funds*/}

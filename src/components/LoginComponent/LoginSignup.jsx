@@ -16,8 +16,9 @@ function LoginSignup() {
   const [registerPassword, setRegisterPassword] = React.useState("");
   const [loginPassword, setLoginPassword] = React.useState("");
   const [showPasword, setShowPasword] = React.useState(false);
-  const [userLoggedIn , setUserLoggedIn] = React.useState(false);
-  const [userRegistered, setUserRegistered] = React.useState(false);
+  // const [userLoggedIn , setUserLoggedIn] = React.useState(false);
+  // const [userRegistered, setUserRegistered] = React.useState(false);
+
   const [showToast, setShowToast] = useState(false);
 
   const registerLink = () => {
@@ -44,7 +45,8 @@ function LoginSignup() {
     setIsValid(value.length >= 6); // 6 is min length for firebase authentication
   };
 
-  const handleLogin = async () => {
+ async function handleLogin(event) {
+    event.preventDefault()
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -58,7 +60,9 @@ function LoginSignup() {
     }
   };
 
-  const handleRegister = async () => {
+  async function handleRegister(event){
+    event.preventDefault()
+
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -213,6 +217,7 @@ function LoginSignup() {
       </div>
     </div>
   );
+
 }
 
 export default LoginSignup;
