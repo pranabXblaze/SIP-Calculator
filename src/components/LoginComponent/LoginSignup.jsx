@@ -8,7 +8,7 @@ import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
 
 import useAuth, { AuthProvider } from "../../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, cssTransition, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function LoginSignup() {
@@ -20,26 +20,34 @@ function LoginSignup() {
   const [loginPassword, setLoginPassword] = useState("");
   const [showPasword, setShowPasword] = useState(false);
   const navigate = useNavigate();
-
   
-  const notify_l = () => toast('✌️Logged In Succesfully.', {
+  const Bounce = cssTransition({
+    enter: "animate__animated animate__bounceIn",
+    exit: "animate__animated animate__bounceOut"
+  })
+  
+  const notify_l = () => toast.success('✌️Logged In Succesfully.', {
     position: "top-center",
-    autoClose: 5000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+    theme: "colored",
+    transition: Bounce
   })
 
-  const notify_r = () => toast('✌️Registered Succesfully.', {
+  const notify_r = () => toast.success('✌️Registered Succesfully.', {
     position: "top-center",
-    autoClose: 5000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
     progress: undefined,
+    theme: "colored",
+    transition: Bounce
   })
   const registerLink = () => {
     setActive("active");
@@ -106,7 +114,17 @@ function LoginSignup() {
       className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
     >
       <div className=''>
-        <ToastContainer/>
+        <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        draggable
+        pauseOnHover= {false}
+        theme="colored"
+        transition= {Bounce}
+        ></ToastContainer>
       </div>
       <div className="form login">
         <form>

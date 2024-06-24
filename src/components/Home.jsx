@@ -7,6 +7,7 @@ import TempStock from "./ExploreSection/TempStock";
 import ReactTypingEffect from "react-typing-effect";
 import useAuth from "../context/AuthContext";
 import { ToastContainer,toast,cssTransition } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
 
 
 
@@ -36,15 +37,14 @@ export default function Home() {
     exit: "animate__animated animate__bounceOut"
   });
   const notify = () => {
-    toast('Register/Signup!',{
+    toast.info('Please Register/Login.',{
       position: "bottom-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
+      closeOnClick : true,
+      pauseOnHover: false,
       draggable: true,
-      progress: undefined,
-      theme: "light",
+      theme: "dark",
       transition: Bounce,
     })
   }
@@ -115,18 +115,15 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       <ToastContainer
-      position="bottom-right"
-      autoClose={5000}
+      position="bottom-right"         
+      autoClose={2000}
       hideProgressBar={false}
-      newestOnTop={false}
       closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
       draggable
-      pauseOnHover
-      theme="light"
+      pauseOnHover={false}
+      theme="dark"
       transition = {Bounce}
-      />
+      ></ToastContainer>
       <div className='fixed bottom-2 mx-5 my-5 float-left dark:text-white md:text-lg text-sm text-blue-400'>
       <AlertDialogue/>     
       </div>

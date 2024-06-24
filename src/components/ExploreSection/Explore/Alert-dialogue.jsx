@@ -21,15 +21,15 @@ export default function AlertDialogue() {
       enter: "animate__animated animate__bounceIn",
       exit: "animate__animated animate__bounceOut"
     });
-    const notify = () => toast('🦄 Login Or Register to continue.', {
+    const notify = () => toast.info('🌐 Login Or Register to continue.', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
         transition: Bounce,
         });
    //const watchlist; TODO
@@ -42,9 +42,8 @@ export default function AlertDialogue() {
     newestOnTop={false}
     closeOnClick
     rtl={false}
-    pauseOnFocusLoss
     draggable
-    pauseOnHover
+    pauseOnHover = {false}
     theme="light"
     transition = {Bounce}/>
         <AlertDialog>

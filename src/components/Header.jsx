@@ -11,15 +11,14 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar"
 import useAuth, { AuthProvider } from "../context/AuthContext";
-import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
 import LoginTogAvatar from "./LoginTogAvatar";
 export default function Header() {
   
   const {authStatus, user,handleLogout } = useAuth();
 
-  console.log(auth)
-  console.log(authStatus);
+  //console.log(auth)
+  //console.log(authStatus);
   
   return (
     <AuthProvider value={{authStatus, user, handleLogout}}>
