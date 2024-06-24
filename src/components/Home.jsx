@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { PieChart, Pie, Cell, Legend ,Tooltip, ResponsiveContainer } from 'recharts';
 import { Link } from "react-router-dom";
 import StockDashboard from "./ExploreSection/StocksDashboard";
-
+import AlertDialogue from "./ExploreSection/Explore/Alert-dialogue";
 import TempStock from "./ExploreSection/TempStock";
 import ReactTypingEffect from "react-typing-effect";
+import useAuth from "../context/AuthContext";
+import { ToastContainer,toast,cssTransition } from "react-toastify";
 
 
 
@@ -20,14 +22,32 @@ export default function Home() {
   const [totalReturns, setTotalReturns] = useState(0);
   const [activeSIP, setActiveSIP] = useState(true);
   const [activeLump, setActiveLump] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); 
   const chartRef = useRef(null);
+
+  const {authStatus} = useAuth(); 
 
   const handleHighlight = () => {
     setActiveSIP(!activeSIP);
     setActiveLump(!activeLump);
   };
 
+  const Bounce = cssTransition({
+    enter: "animate__animated animate__bounceIn",
+    exit: "animate__animated animate__bounceOut"
+  });
+  const notify = () => {
+    toast('Register/Signup!',{
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
+  }
 
   useEffect(() => {
     if (chartRef.current) chartRef.current.destroy();
@@ -94,7 +114,23 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full">
-    <section className="w-full px-4 py-8">
+      <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      transition = {Bounce}
+      />
+      <div className='fixed bottom-2 mx-5 my-5 float-left dark:text-white md:text-lg text-sm text-blue-400'>
+      <AlertDialogue/>     
+      </div>
+    <section className="w-full px-4 py-8"> {/*Hero Section */}
       <div className="flex flex-wrap justify-center py-8">
       <section className="flex flex-col w-full bg-primary text-white p-10 rounded-lg">
           <ReactTypingEffect
@@ -125,13 +161,12 @@ export default function Home() {
         <p className="mb-6 text-2xl">
           Start investing with a Systematic Investment Plan.
         </p>
-        <Link
-          to={'loginsignup'}
-          //href="#calculator"
+        <a
+          href="#calculator"
           className="w-1/3 text-center bg-secondary text-blue-200 py-2 px-4 rounded-md hover:bg-blue-200"
         >
           Get Started
-        </Link>
+        </a>
       </section>
       <div className="flex my-4 mx-4">
         {/*Stocks & Mf carousel */}
@@ -190,11 +225,9 @@ export default function Home() {
           It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
       <div className="row-span-4 flex flex-col justify-center items-center">
-        {/* This will contain the latest MUTUAL funds*/}
-        {/* <h2 className="text-slate-600 font-extrabold mb-10 underline">Relevant Stocks</h2> */}
         <ReactTypingEffect
              className="text-5xl justify-center font-bold my-8"
-              text={['Relevant Stocks...','Sign up to continue.']}
+              text={['Relevant Stocks..','Register now.']}
               speed={100}
               eraseSpeed={100}
               eraseDelay={1000}
@@ -341,7 +374,7 @@ export default function Home() {
             <button
               type="button"
               className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mr-2"
-              onClick={handleCalculate}
+              onClick={authStatus? handleCalculate : notify}
             >
               Calculate
             </button>

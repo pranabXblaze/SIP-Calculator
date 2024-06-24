@@ -6,21 +6,41 @@ import React,{useEffect, useState} from "react";
 import { FaLock, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
-import ToastComponent from "./ToastComponent";
+
+import useAuth, { AuthProvider } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function LoginSignup() {
-  const [active, setActive] = React.useState("");
+  const [active, setActive] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const [registerEmail, setRegisterEmail] = React.useState("");
-  const [loginEmail, setLoginEmail] = React.useState("");
-  const [registerPassword, setRegisterPassword] = React.useState("");
-  const [loginPassword, setLoginPassword] = React.useState("");
-  const [showPasword, setShowPasword] = React.useState(false);
-  // const [userLoggedIn , setUserLoggedIn] = React.useState(false);
-  // const [userRegistered, setUserRegistered] = React.useState(false);
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [showPasword, setShowPasword] = useState(false);
+  const navigate = useNavigate();
 
-  const [showToast, setShowToast] = useState(false);
+  
+  const notify_l = () => toast('✌️Logged In Succesfully.', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  })
 
+  const notify_r = () => toast('✌️Registered Succesfully.', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  })
   const registerLink = () => {
     setActive("active");
   };
@@ -54,7 +74,8 @@ function LoginSignup() {
         loginPassword
       );
       console.log(user);
-      setUserLoggedIn(true);
+      navigate('/')
+      return notify_l;
     } catch (error) {
       throw error;
     }
@@ -70,31 +91,29 @@ function LoginSignup() {
         registerPassword
       );
       console.log(user);
-      setUserRegistered(true);
+      navigate('/')
+      return notify_r;
     } catch (error) {
       throw error;
     }
-  };
- TODO : //const handleSignOut
-  useEffect( ()=> {
-    if (userRegistered || userLoggedIn) {
-      setShowToast(!showToast);
-     showToast && (<ToastComponent/>)
-     }
-     else {
-      console.log("User is not logged in");
-     }
-  },[userRegistered,userLoggedIn])
 
+  };
+  const{user, authStatus} = useAuth()
+  
   return (
+    <AuthProvider value={{user, handleLogin, handleRegister, authStatus}}>
     <div
       className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
     >
+      <div className=''>
+        <ToastContainer/>
+      </div>
       <div className="form login">
         <form>
           <h1>Login</h1>
-          <div className="input-box text-gray-700">
+          <div className="input-box">
             <input
+              className="text-blue-400 dark:text-white"
               type="text"
               name="email"
               onChange={(e) => setLoginEmail(e.target.value)}
@@ -103,6 +122,7 @@ function LoginSignup() {
             />
             <FaRegEnvelope className="absolute right-5 top-5 translate-y-1/2 font-light" />
             <input
+            className="text-blue-400 dark:text-white"
               type={showPasword ? "text" : "password"}
               name="Password"
               placeholder="Password"
@@ -110,7 +130,7 @@ function LoginSignup() {
               onChange={handleChange_l}
               required
             />
-            <FaLock className="absolute right-5 bottom-24 translate-y-1/2 font-light" />
+            <FaLock className="absolute right-5 top-[82px] translate-y-1/2 font-light" />
             <div>
             {!isValid && <p className="text-red-500 mt-2">Password must be at least 6 characters long.</p>}
             </div>
@@ -150,11 +170,12 @@ function LoginSignup() {
         </form>
       </div>
 
-      <div className="form register text-gray-700">
+      <div className="form register">
         <form>
           <h1>Registration</h1>
           <div className="input-box">
             <input
+              className="text-blue-400 dark:text-white"
               type="text"
               name="Username"
               placeholder="Username"
@@ -162,6 +183,7 @@ function LoginSignup() {
             />
             <FaUser className="relative left-5 bottom-14 translate-y-1/2 font-light" />
             <input
+              className="text-blue-400 dark:text-white"
               type="text"
               name="email"
               placeholder="Email"
@@ -170,6 +192,7 @@ function LoginSignup() {
             />
             <FaRegEnvelope className="relative left-5 bottom-14 translate-y-1/2 font-light" />
             <input
+              className="text-blue-400 dark:text-white"
               type={showPasword ? "text" : "password"}
               name="Password"
               placeholder="Password"
@@ -216,8 +239,8 @@ function LoginSignup() {
         </form>
       </div>
     </div>
+    </AuthProvider>
   );
-
 }
 
 export default LoginSignup;
