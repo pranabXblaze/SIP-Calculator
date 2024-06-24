@@ -35,11 +35,7 @@ export default function AlertDialogue() {
    //const watchlist; TODO
   return (
     <div>
-        <AlertDialog>
-     <AlertDialogTrigger asChild>
-        <button className='bg-blue-500 p-2 rounded-lg' onClick={authStatus? notify: null }>Your Watchlist</button>
-        </AlertDialogTrigger>
-        <ToastContainer
+      <ToastContainer
     position="bottom-right"
     autoClose={5000}
     hideProgressBar={false}
@@ -51,6 +47,10 @@ export default function AlertDialogue() {
     pauseOnHover
     theme="light"
     transition = {Bounce}/>
+        <AlertDialog>
+     <AlertDialogTrigger asChild>
+        <button className='bg-blue-500 p-2 rounded-lg' onClick={authStatus? notify: null }>Your Watchlist</button>
+        </AlertDialogTrigger>
         <AlertDialogContent className='bg-white text-gray-500'>
             <AlertDialogHeader>
                 <AlertDialogTitle>Title</AlertDialogTitle>

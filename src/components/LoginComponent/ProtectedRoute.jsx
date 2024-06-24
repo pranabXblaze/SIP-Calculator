@@ -1,20 +1,12 @@
 // ProtectedRoute.jsx
 import React from 'react';
-import { Route, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import useAuth from '../../context/AuthContext';
+import { ToastContainer,toast } from 'react-toastify';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const navigate = useNavigate()
-    const { authStatus } = useAuth();
+const ProtectedRoute = ({ component: Component, ...props }) => {
 
-    return (
-        <Route 
-            {...rest} 
-            render={(props) => {
-                return authStatus ? <Component {...props} /> : navigate('/loginSignup')
-            }} 
-        />
-    );
-};
-
+    
+return(null)
+}
 export default ProtectedRoute;

@@ -4,6 +4,7 @@ import AlertDialogue from './Alert-dialogue';
 import { Skeleton } from "@/components/ui/skeleton"
 import { useId,useState,useEffect } from 'react';
 import StockCard from '../StockCard';
+import useAuth from '../../../context/AuthContext';
 //Stock Symbols
 const indices = {
   //Nitfy symbols
@@ -121,6 +122,7 @@ export default function Stocks() {
   const [loading, setLoading] = useState(true);
   const [stockData, setStockData] = useState([]);
   const id = useId();
+  const {authStatus} = useAuth()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -170,12 +172,11 @@ export default function Stocks() {
     
     <div className='fixed bottom-4 mx-5 my-5 float-left'>
     <AlertDialogue/>
-    Watchlist
     </div>
 
     <div className='mx-5 my-20 col-span-1 md:col-span-2'>
     {
-     !loading &&  (
+     (!loading && authStatus) &&  (
       <div className='flex flex-wrap justify-center'>        
         {stockData.map((stock,key=id) => (
             <StockCard 
@@ -188,7 +189,7 @@ export default function Stocks() {
       </div>
      )
     } 
-     {loading && (
+     {(loading && authStatus) && (
       <div className='flex flex-col flex-wrap gap-4'>
      <Skeleton className="w-[144px] h-[10px] sm:w-[700px] sm:h-[20px] rounded-full"/>
      <Skeleton className="w-[144px] h-[10px] sm:w-[200px] sm:h-[20px] rounded-full" />  
