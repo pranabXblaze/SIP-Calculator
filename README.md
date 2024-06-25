@@ -8,8 +8,9 @@ This is a market standard SIP calculator for estimating mutual fund returns.
 >>>>>>> ed113f6 (update readme file.)
 
 # SIP-Calculator
-This is a market standard SIP calculator for estimating mutual fund returns. 
-
+This is a market standard SIP calculator for estimating mutual fund returns.
+ 
+# Link https://stocks-funds-calculator-pranabkumar.netlify.app/
 <<<<<<< HEAD
 Currently, two official plugins are available:
 
