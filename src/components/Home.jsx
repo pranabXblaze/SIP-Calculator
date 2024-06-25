@@ -138,7 +138,7 @@ export default function Home() {
               eraseDelay={1000}
               cursorRenderer ={ (cursor) => (<h1>{cursor}</h1>)}
               cursorClassName='text-gray-500'
-              displayTextRenderer={(text, i) => 
+              displayTextRenderer={(text) => 
                (
                  <h1>
                        {text.split('').map((char, i) => {

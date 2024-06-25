@@ -2,11 +2,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import React,{useEffect, useState} from "react";
+import React,{useState} from "react";
 import { FaLock, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
-
+import 'react-toastify/ReactToastify.css'
 import useAuth, { AuthProvider } from "../../context/AuthContext";
 import { ToastContainer, cssTransition, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
