@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 import { ModeToggle } from "./mode-toggle";
 import {
@@ -10,15 +10,21 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import useAuth, { AuthProvider } from "../context/AuthContext";
-import { auth } from "../firebase/config";
-import LoginTogAvatar from "./LoginTogAvatar";
 export default function Header() {
   
   const {authStatus, user,handleLogout } = useAuth();
 
   //console.log(auth)
-  console.log(authStatus);
+  //console.log(authStatus);
   return (
     <AuthProvider value={{authStatus, user, handleLogout}}>
     <Menubar>
@@ -65,25 +71,42 @@ export default function Header() {
           </MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
-      <MenubarMenu>
-        {/* <MenubarTrigger>Profiles</MenubarTrigger> */}
-        {/* <MenubarContent>
-          <MenubarRadioGroup value="benoit">
-            <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-            <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-            <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
-          </MenubarRadioGroup>
-          <MenubarSeparator />
-          <MenubarItem inset>Edit...</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem inset>Add Profile...</MenubarItem>
-        </MenubarContent> */}
-      </MenubarMenu>
     </Menubar>
     <div className="flex">
-            <ModeToggle/>
-            <LoginTogAvatar/>
-     </div>        
+        <ModeToggle/>
+     </div>
+     <div className="flex">
+     {authStatus && <div>
+   <DropdownMenu>
+     <DropdownMenuTrigger asChild>
+   <Avatar>
+   <AvatarImage src={`https://ui-avatars.com/api/?name=${user}`}/>
+   <AvatarFallback>Username:{user?.email}</AvatarFallback>
+   </Avatar>
+   </DropdownMenuTrigger>
+   <DropdownMenuContent>
+     <DropdownMenuItem>
+       <Link to={''}>
+       My Account
+       </Link>
+     </DropdownMenuItem>
+     <DropdownMenuItem className='' onClick={handleLogout}> 
+       Logout
+     </DropdownMenuItem>
+   </DropdownMenuContent>
+   </DropdownMenu>
+ </div>}
+ { !authStatus && <div className="flex justify-end space-x-2">
+
+            <Link
+              className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-l flex align-middle text-center min-h-[2px] text-white py-2 px-4 rounded-lg"
+              to="/loginSignup"
+            >
+              Login/Signup
+            </Link>
+    </div> 
+  }
+      </div>        
     </AuthProvider>
   );
 }

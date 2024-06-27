@@ -26,7 +26,7 @@ export default function Home() {
   const chartRef = useRef(null);
 
   const {authStatus, user} = useAuth(); 
-  console.log(authStatus)
+  //console.log(authStatus)
   const handleHighlight = () => {
     setActiveSIP(!activeSIP);
     setActiveLump(!activeLump);

@@ -11,7 +11,7 @@ import useAuth, { AuthProvider } from "../../context/AuthContext";
 import { ToastContainer, cssTransition, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function LoginSignup() {
+function LoginSignup({authProp , ...rest}) {
   const [active, setActive] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [registerEmail, setRegisterEmail] = useState("");
@@ -20,7 +20,6 @@ function LoginSignup() {
   const [loginPassword, setLoginPassword] = useState("");
   const [showPasword, setShowPasword] = useState(false);
   const navigate = useNavigate();
-  
   const Bounce = cssTransition({
     enter: "animate__animated animate__bounceIn",
     exit: "animate__animated animate__bounceOut"
@@ -73,47 +72,54 @@ function LoginSignup() {
     setIsValid(value.length >= 6); // 6 is min length for firebase authentication
   };
 
- async function handleLogin(event) {
+   function Login(event) {
     event.preventDefault()
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(user);
-      navigate('/')
-      return notify_l;
+      handleLogin( loginEmail, loginPassword, ()=> {
+        setAuthStatus(true);
+        console.log(user)
+        navigate('/')
+        return notify_l;
+      })  
     } catch (error) {
-      throw error;
-    }
+      setErrorMsg(error.messsage)
+    }  
   };
 
-  async function handleRegister(event){
+   function Register(event){
     event.preventDefault()
-
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      console.log(user);
-      navigate('/')
-      return notify_r;
+    try{
+      handleRegister(registerEmail, registerPassword , () => {
+        setAuthStatus(true);
+        console.log(user)
+        navigate('/')
+        return notify_r;
+      })
     } catch (error) {
-      throw error;
-    }
+     setErrorMsg(error.messsage);
+    };
+  }
 
-  };
-  const{user, authStatus} = useAuth()
-  
-  return (
+const {user,handleLogin, handleRegister} = useAuth();
+const [authStatus, setAuthStatus] = useState(false);
+const [errorMsg, setErrorMsg] = useState('')
+
+return (
     <AuthProvider value={{user, handleLogin, handleRegister, authStatus}}>
+      {
+        !authProp && <div className="flex justify-center">
+          <p className="text-red-400">Please Login/Register.</p>
+        </div>
+      }
+      {
+        authProp && <div className="flex justify-center">
+          <p className="text-green-400">You're a user now.</p>
+        </div>
+      }
     <div
       className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
     >
-      <div className=''>
+      {authStatus && <div className=''>
         <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -125,7 +131,10 @@ function LoginSignup() {
         theme="colored"
         transition= {Bounce}
         ></ToastContainer>
-      </div>
+      </div>}
+      {
+        errorMsg && <p className="text-red-400">Error while Login or Register: `${errorMsg}`</p>
+      }
       <div className="form login">
         <form>
           <h1>Login</h1>
@@ -171,7 +180,7 @@ function LoginSignup() {
           </div>
 
           <button
-            onClick={handleLogin}
+            onClick={Login}
             className="bg-slate-400 hover:bg-slate-500"
           >
             Login{" "}
@@ -240,7 +249,7 @@ function LoginSignup() {
           </div>
 
           <button
-            onClick={handleRegister}
+            onClick={Register}
             className=" bg-slate-400 hover:bg-slate-500"
           >
             Register

@@ -13,17 +13,26 @@ export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const [authStatus, setAuthStatus] = useState(false)
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (email, password,callback) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
+     const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+     const user = userCredentials.user 
+     setUser(user);   
+     setAuthStatus(true);
+     if (callback) callback()  
+    } 
+    catch (error) {
       console.error("Login error: ", error);
     }
   };
 
-  const handleRegister = async (email, password) => {
+  const handleRegister = async (email, password,callback) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+     const user = userCredentials.user
+     setUser(user);
+     setAuthStatus(true)
+     if (callback) callback()
     } catch (error) {
       console.error("Register error: ", error);
     }
@@ -32,6 +41,8 @@ export const AuthProvider = ({children}) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      setUser(null);
+      setAuthStatus(false);
     } catch (error) {
       console.error("Logout error: ", error);
     }

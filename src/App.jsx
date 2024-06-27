@@ -15,8 +15,8 @@ export default function App(){
           <Route path="/" element={<Layout />} errorElement={<ErrorBoundary/>}>
             <Route path="/" element={<Home />} />
             <Route path="/loginSignup" element={<LoginSignup/>} /> 
-            <Route path="/stocks" element={authStatus? <Stocks /> :  <LoginSignup/>} />
-            <Route path='/news' element={authStatus? <NewsFeed/> : <LoginSignup/>}/>
+            <Route path="/stocks" element={authStatus? <Stocks /> :  <LoginSignup authProp={authStatus}/>} />
+            <Route path='/news' element={authStatus? <NewsFeed/> : <LoginSignup authProp={authStatus}/>}/>
           </Route>
         )
       );
