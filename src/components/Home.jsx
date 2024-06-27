@@ -8,7 +8,7 @@ import ReactTypingEffect from "react-typing-effect";
 import useAuth from "../context/AuthContext";
 import { ToastContainer,toast,cssTransition } from "react-toastify";
 import 'react-toastify/ReactToastify.css'
-
+import { AuthProvider } from "../context/AuthContext";
 
 
 export default function Home() {
@@ -25,8 +25,8 @@ export default function Home() {
   const [activeLump, setActiveLump] = useState(false);
   const chartRef = useRef(null);
 
-  const {authStatus} = useAuth(); 
-
+  const {authStatus, user} = useAuth(); 
+  console.log(authStatus)
   const handleHighlight = () => {
     setActiveSIP(!activeSIP);
     setActiveLump(!activeLump);
@@ -113,6 +113,7 @@ export default function Home() {
 
 
   return (
+    <AuthProvider value={{authStatus, user}}>
     <div className="flex flex-col w-full">
       <ToastContainer
       position="bottom-right"         
@@ -431,5 +432,6 @@ export default function Home() {
       </section>
       
     </div>
+    </AuthProvider>
   );
 }

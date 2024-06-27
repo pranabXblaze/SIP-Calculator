@@ -18,8 +18,7 @@ export default function Header() {
   const {authStatus, user,handleLogout } = useAuth();
 
   //console.log(auth)
-  //console.log(authStatus);
-  
+  console.log(authStatus);
   return (
     <AuthProvider value={{authStatus, user, handleLogout}}>
     <Menubar>
