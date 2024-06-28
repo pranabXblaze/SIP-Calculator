@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
   const handleLogin = async (email, password,callback) => {
     try {
      const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-     const user = userCredentials.user 
+     const user = userCredentials.user
      setUser(user);   
      setAuthStatus(true);
      if (callback) callback()  

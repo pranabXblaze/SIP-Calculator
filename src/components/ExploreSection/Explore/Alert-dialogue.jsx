@@ -12,8 +12,8 @@ import {
   } from "@/components/ui/alert-dialog"
 //import "./alert.css";
 import { ToastContainer,toast,cssTransition } from 'react-toastify';
-
-import useAuth from '../../../context/AuthContext';
+import 'react-toastify/ReactToastify.css'
+import useAuth, { AuthProvider } from '../../../context/AuthContext';
 export default function AlertDialogue() {
     const {authStatus} = useAuth();
 
@@ -21,7 +21,7 @@ export default function AlertDialogue() {
       enter: "animate__animated animate__bounceIn",
       exit: "animate__animated animate__bounceOut"
     });
-    const notify = () => toast.info('🌐 Login Or Register to continue.', {
+    const notify = () => toast.info('💻 You are a user. Craete your watclist', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
@@ -34,6 +34,7 @@ export default function AlertDialogue() {
         });
    //const watchlist; TODO
   return (
+    <AuthProvider value={{authStatus}}>
     <div>
       <ToastContainer
     position="bottom-right"
@@ -45,7 +46,7 @@ export default function AlertDialogue() {
     draggable
     pauseOnHover = {false}
     theme="light"
-    transition = {Bounce}/>
+    transition = {Bounce}></ToastContainer>
         <AlertDialog>
      <AlertDialogTrigger asChild>
         <button className='bg-blue-500 p-2 rounded-lg' onClick={authStatus? notify: null }>Your Watchlist</button>
@@ -71,5 +72,6 @@ export default function AlertDialogue() {
         </AlertDialogContent>
      </AlertDialog>
     </div>
+  </AuthProvider>  
   ) 
 }

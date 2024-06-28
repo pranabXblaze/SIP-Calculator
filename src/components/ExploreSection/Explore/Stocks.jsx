@@ -4,7 +4,7 @@ import AlertDialogue from './Alert-dialogue';
 import { Skeleton } from "@/components/ui/skeleton"
 import { useId,useState,useEffect } from 'react';
 import StockCard from '../StockCard';
-import useAuth from '../../../context/AuthContext';
+import useAuth, { AuthProvider } from '../../../context/AuthContext';
 //Stock Symbols
 const indices = {
   //Nitfy symbols
@@ -118,12 +118,12 @@ const indices = {
     'RELIANCE.NS':'Reliance-Jio part of Industries'
 }
 
-export default function Stocks() {
+export default function Stocks({authProp}) {
   const [loading, setLoading] = useState(true);
   const [stockData, setStockData] = useState([]);
   const id = useId();
   const {authStatus} = useAuth()
-
+ 
   useEffect(() => {
     const fetchData = async () => {
         try {
@@ -144,6 +144,7 @@ export default function Stocks() {
 }, []);
 
   return (
+    <AuthProvider value={{authStatus}}>
     <div  className='grid grid-cols-2 md:grid-cols-3 gap-4 my-8'>
     <ReactTypingEffect 
     className='text-6xl font-bold mx-[40px] md:h-1/2 h-[320px]'
@@ -203,7 +204,7 @@ export default function Stocks() {
     ) 
     }
     </div>
-
     </div>
+  /</AuthProvider>
   )
 }

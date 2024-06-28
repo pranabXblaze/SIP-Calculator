@@ -8,7 +8,6 @@ import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
 import 'react-toastify/ReactToastify.css'
 import useAuth, { AuthProvider } from "../../context/AuthContext";
-import { ToastContainer, cssTransition, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function LoginSignup({authProp , ...rest}) {
@@ -20,34 +19,19 @@ function LoginSignup({authProp , ...rest}) {
   const [loginPassword, setLoginPassword] = useState("");
   const [showPasword, setShowPasword] = useState(false);
   const navigate = useNavigate();
-  const Bounce = cssTransition({
-    enter: "animate__animated animate__bounceIn",
-    exit: "animate__animated animate__bounceOut"
-  })
   
-  const notify_l = () => toast.success('✌️Logged In Succesfully.', {
-    position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-    transition: Bounce
-  })
 
-  const notify_r = () => toast.success('✌️Registered Succesfully.', {
-    position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-    transition: Bounce
-  })
+  // const notify_r = () => toast.success('✌️Registered Succesfully.', {
+  //   position: "top-center",
+  //   autoClose: 2000,
+  //   hideProgressBar: false,
+  //   closeOnClick: true,
+  //   pauseOnHover: false,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "colored",
+  //   transition: Bounce
+  // })
   const registerLink = () => {
     setActive("active");
   };
@@ -77,9 +61,7 @@ function LoginSignup({authProp , ...rest}) {
     try {
       handleLogin( loginEmail, loginPassword, ()=> {
         setAuthStatus(true);
-        console.log(user)
         navigate('/')
-        return notify_l;
       })  
     } catch (error) {
       setErrorMsg(error.messsage)
@@ -91,9 +73,7 @@ function LoginSignup({authProp , ...rest}) {
     try{
       handleRegister(registerEmail, registerPassword , () => {
         setAuthStatus(true);
-        console.log(user)
         navigate('/')
-        return notify_r;
       })
     } catch (error) {
      setErrorMsg(error.messsage);
@@ -114,24 +94,12 @@ return (
       {
         authProp && <div className="flex justify-center">
           <p className="text-green-400">You're a user now.</p>
+          {console.log(user)}
         </div>
       }
     <div
       className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
     >
-      {authStatus && <div className=''>
-        <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        draggable
-        pauseOnHover= {false}
-        theme="colored"
-        transition= {Bounce}
-        ></ToastContainer>
-      </div>}
       {
         errorMsg && <p className="text-red-400">Error while Login or Register: `${errorMsg}`</p>
       }

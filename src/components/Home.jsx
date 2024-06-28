@@ -48,9 +48,23 @@ export default function Home() {
       transition: Bounce,
     })
   }
+  
+  const notify_lr = () => toast.info('✌️Logged out Succesfully.', {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    transition: Bounce
+  })
+
 
   useEffect(() => {
     if (chartRef.current) chartRef.current.destroy();
+    if(authStatus) return notify_lr
   }, []);
 
   const handleCalculate = () => {
@@ -125,6 +139,19 @@ export default function Home() {
       theme="dark"
       transition = {Bounce}
       ></ToastContainer>
+
+        <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        draggable
+        pauseOnHover= {false}
+        theme="colored"
+        transition= {Bounce}
+        ></ToastContainer>
+
       <div className='fixed bottom-2 mx-5 my-5 float-left dark:text-white md:text-lg text-sm text-blue-400'>
       <AlertDialogue/>     
       </div>

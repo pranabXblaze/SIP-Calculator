@@ -17,7 +17,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { ToastContainer,toast,cssTransition } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
 import useAuth, { AuthProvider } from "../context/AuthContext";
 export default function Header() {
   
@@ -25,6 +26,27 @@ export default function Header() {
 
   //console.log(auth)
   //console.log(authStatus);
+  const Bounce = cssTransition({
+    enter: "animate__animated animate__bounceIn",
+    exit: "animate__animated animate__bounceOut"
+  });
+
+  const notify_lout = () => toast.success('🌐 Logged out Succesfully.', {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    transition: Bounce
+  })
+
+  function handle_l() {
+    handleLogout()
+    return notify_lout
+  }
   return (
     <AuthProvider value={{authStatus, user, handleLogout}}>
     <Menubar>
@@ -90,22 +112,32 @@ export default function Header() {
        My Account
        </Link>
      </DropdownMenuItem>
-     <DropdownMenuItem className='' onClick={handleLogout}> 
+     <DropdownMenuItem className='' onClick={handle_l}> 
        Logout
      </DropdownMenuItem>
    </DropdownMenuContent>
    </DropdownMenu>
  </div>}
  { !authStatus && <div className="flex justify-end space-x-2">
-
             <Link
               className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-l flex align-middle text-center min-h-[2px] text-white py-2 px-4 rounded-lg"
               to="/loginSignup"
             >
               Login/Signup
             </Link>
-    </div> 
+  </div> 
   }
+  <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        draggable
+        pauseOnHover= {false}
+        theme="colored"
+        transition= {Bounce}
+        ></ToastContainer>
       </div>        
     </AuthProvider>
   );
