@@ -10,6 +10,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { Link } from 'react-router-dom';  
 //import "./alert.css";
 import { ToastContainer,toast,cssTransition } from 'react-toastify';
 import 'react-toastify/ReactToastify.css'
@@ -66,7 +67,7 @@ export default function AlertDialogue() {
             <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction asChild>
-                    <button><a href='/auth'>Login/Register</a></button>
+                    <button><Link to='/auth'>Login/Register</Link></button>
                 </AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
