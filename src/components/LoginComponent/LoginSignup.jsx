@@ -57,9 +57,11 @@ function LoginSignup() {
   };
 
    function Register(event){
+    setBar(true)
     event.preventDefault()
     try{
       handleRegister(registerEmail, registerPassword , () => {
+        setBar(false)
         navigate('/')
         setAuthStatus(true);
       })
@@ -205,7 +207,8 @@ return (
             </label>
             <a href=""></a>
           </div>
-
+          {bar &&
+          <BarLoader className="mb-4 mx-8" color="#1A53CD" width={220}/>}
           <button
             onClick={Register}
             className=" bg-slate-400 hover:bg-slate-500"
