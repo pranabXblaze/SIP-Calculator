@@ -4,7 +4,6 @@ import { NavLink,Link } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
 import {
   Menubar,
-  MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
   MenubarMenu,
@@ -40,7 +39,7 @@ export default function Header() {
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-        <NavLink to={'/stocks'}   
+        <NavLink to={authStatus? '/stocks': '/auth'}   
           className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent hover:text-orange-700`
                     }>
           Explore
@@ -64,12 +63,15 @@ export default function Header() {
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarTrigger>Latest Buzz</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>
-            Always Show Full URLs
-          </MenubarCheckboxItem>
+          <MenubarItem>
+          <NavLink to={authStatus? '/news' : '/auth'}   
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
+                     }>
+          Latest Buzz
+          </NavLink>
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
