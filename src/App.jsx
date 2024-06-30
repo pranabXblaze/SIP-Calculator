@@ -9,18 +9,28 @@ import useAuth, { AuthProvider }  from "./context/AuthContext";
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 export default function App(){
   const {authStatus, user, handleLogin,handleRegister, handleLogout} = useAuth();
-
-    const router = new createBrowserRouter(
+ 
+  const router = new createBrowserRouter(
         createRoutesFromElements(
           <Route path="/" element={<Layout />} errorElement={<ErrorBoundary/>}>
-            <Route path="/" element={<Home />} />
-            <Route path="/loginSignup" element={<LoginSignup/>} /> 
-            <Route path="/stocks" element={authStatus? <Stocks /> :  <LoginSignup authProp={authStatus}/>} />
-            <Route path='/news' element={authStatus? <NewsFeed/> : <LoginSignup authProp={authStatus}/>}/>
+            <Route path="" element={<Home />}  />
+            <Route path="/auth" element={<LoginSignup/>} /> 
+            <Route path="/stocks" 
+            element=
+            { 
+              <Stocks/>
+            }
+            />
+            <Route path="/news" 
+            element=
+            {
+              <NewsFeed/>
+            }
+            />
           </Route>
         )
       );
-
+     
     return(
             <AuthProvider value={{authStatus, user, handleLogin,handleRegister, handleLogout}}>
                 <RouterProvider router={router} />

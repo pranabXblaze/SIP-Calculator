@@ -66,7 +66,7 @@ export default function AlertDialogue() {
             <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction asChild>
-                    <button><a href='/loginSignup'>Login/Register</a></button>
+                    <button><a href='/auth'>Login/Register</a></button>
                 </AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>

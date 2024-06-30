@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect,useState,useId } from 'react';
 import StockCard from './StockCard'
-import { InfinitySpin } from 'react-loader-spinner';
+import { ClimbingBoxLoader } from 'react-spinners';
 export default function TempStock() {
     const id = useId();
     const [stockData, setStockData] = useState([]);
@@ -106,11 +106,7 @@ export default function TempStock() {
   )
   else {
     return (
-        <InfinitySpin
-            visible={true}
-            width="300"
-            color="#4fa94d"
-            ariaLabel="infinity-spin-loading"
-            />)
+       <ClimbingBoxLoader color='#1A53CD' size={20} loading={true}/>
+    )
   }
 }

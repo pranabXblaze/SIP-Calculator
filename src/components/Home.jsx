@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { PieChart, Pie, Cell, Legend ,Tooltip, ResponsiveContainer } from 'recharts';
 import { Link } from "react-router-dom";
 import StockDashboard from "./ExploreSection/StocksDashboard";
@@ -49,7 +49,7 @@ export default function Home() {
     })
   }
   
-  const notify_lr = () => toast.info('✌️Logged out Succesfully.', {
+  const notify_lr = () => toast.success('✌️User now .', {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: false,
@@ -64,8 +64,11 @@ export default function Home() {
 
   useEffect(() => {
     if (chartRef.current) chartRef.current.destroy();
-    if(authStatus) return notify_lr
   }, []);
+
+  useCallback(()=> {
+    if(authStatus) return notify_lr
+  },[authStatus])
 
   const handleCalculate = () => {
     const sipAmountNum = parseFloat(sipAmount);
@@ -126,10 +129,10 @@ export default function Home() {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 
-  return (
+ return (
     <AuthProvider value={{authStatus, user}}>
     <div className="flex flex-col w-full">
-      <ToastContainer
+      <ToastContainer //todo
       position="bottom-right"         
       autoClose={2000}
       hideProgressBar={false}
@@ -139,7 +142,6 @@ export default function Home() {
       theme="dark"
       transition = {Bounce}
       ></ToastContainer>
-
         <ToastContainer
         position="top-center"
         autoClose={2000}

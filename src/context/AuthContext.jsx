@@ -3,7 +3,8 @@ import { signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut,onAu
 import { auth } from "../firebase/config";
 export const AuthContext = createContext({
     authStatus : false,
-    user : "", 
+    user : "",
+    loading: false, 
     handleLogin : () => {},
     handleRegister : () => {},
     handleLogout : () => {},
@@ -12,6 +13,7 @@ export const AuthContext = createContext({
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const [authStatus, setAuthStatus] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const handleLogin = async (email, password,callback) => {
     try {
@@ -19,6 +21,7 @@ export const AuthProvider = ({children}) => {
      const user = userCredentials.user
      setUser(user);   
      setAuthStatus(true);
+     setLoading(false);
      if (callback) callback()  
     } 
     catch (error) {
@@ -32,6 +35,7 @@ export const AuthProvider = ({children}) => {
      const user = userCredentials.user
      setUser(user);
      setAuthStatus(true)
+     setLoading(false);
      if (callback) callback()
     } catch (error) {
       console.error("Register error: ", error);
@@ -54,9 +58,11 @@ export const AuthProvider = ({children}) => {
         if(Curruser){
         setUser(Curruser);
         setAuthStatus(true);
+        setLoading(false);
       } else {
        setUser(null);
        setAuthStatus(false);
+       setLoading(true);
       }
        })
        return unsubscribe;
@@ -64,7 +70,7 @@ export const AuthProvider = ({children}) => {
 },[]);
 
    return (
-    <AuthContext.Provider value={{authStatus, user, handleLogin, handleRegister, handleLogout}}>
+    <AuthContext.Provider value={{authStatus, user, handleLogin, handleRegister, handleLogout,loading}}>
     {children}
     </AuthContext.Provider>
    )

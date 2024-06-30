@@ -1,16 +1,11 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import React,{useState} from "react";
 import { FaLock, FaRegEnvelope, FaUser } from "react-icons/fa6";
-import { auth } from "../../firebase/config";
 import "./LoginSignup.css";
 import 'react-toastify/ReactToastify.css'
 import useAuth, { AuthProvider } from "../../context/AuthContext";
+import { BarLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
-
-function LoginSignup({authProp , ...rest}) {
+function LoginSignup() {
   const [active, setActive] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [registerEmail, setRegisterEmail] = useState("");
@@ -21,17 +16,8 @@ function LoginSignup({authProp , ...rest}) {
   const navigate = useNavigate();
   
 
-  // const notify_r = () => toast.success('✌️Registered Succesfully.', {
-  //   position: "top-center",
-  //   autoClose: 2000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: false,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "colored",
-  //   transition: Bounce
-  // })
+
+
   const registerLink = () => {
     setActive("active");
   };
@@ -57,11 +43,13 @@ function LoginSignup({authProp , ...rest}) {
   };
 
    function Login(event) {
+    setBar(true)
     event.preventDefault()
     try {
       handleLogin( loginEmail, loginPassword, ()=> {
-        setAuthStatus(true);
+        setBar(false)
         navigate('/')
+        setAuthStatus(true);
       })  
     } catch (error) {
       setErrorMsg(error.messsage)
@@ -72,36 +60,37 @@ function LoginSignup({authProp , ...rest}) {
     event.preventDefault()
     try{
       handleRegister(registerEmail, registerPassword , () => {
-        setAuthStatus(true);
         navigate('/')
+        setAuthStatus(true);
       })
     } catch (error) {
      setErrorMsg(error.messsage);
     };
   }
 
-const {user,handleLogin, handleRegister} = useAuth();
+const {user,handleLogin, handleRegister,loading} = useAuth();
 const [authStatus, setAuthStatus] = useState(false);
 const [errorMsg, setErrorMsg] = useState('')
+const [bar, setBar] = useState(false)
+
 
 return (
-    <AuthProvider value={{user, handleLogin, handleRegister, authStatus}}>
+    <AuthProvider value={{user,loading, handleLogin, handleRegister, authStatus}}>
       {
-        !authProp && <div className="flex justify-center">
+        !authStatus && <div className="flex justify-center my-4">
           <p className="text-red-400">Please Login/Register.</p>
         </div>
       }
       {
-        authProp && <div className="flex justify-center">
+        authStatus && <div className="flex justify-center">
           <p className="text-green-400">You're a user now.</p>
-          {console.log(user)}
         </div>
       }
     <div
       className={`wrapper flex h-[480px] w-[420px] p-6 my-10 ${active} items-center justify-center mx-auto`}
-    >
-      {
-        errorMsg && <p className="text-red-400">Error while Login or Register: `${errorMsg}`</p>
+    > 
+      { 
+        errorMsg && <p className="text-red-400">Error while Login or Register.</p>
       }
       <div className="form login">
         <form>
@@ -146,7 +135,8 @@ return (
             </label>
             <a href="">Forget Password?</a>
           </div>
-
+         {bar &&
+          <BarLoader className="mb-4 mx-8" color="#1A53CD" width={220}/>}
           <button
             onClick={Login}
             className="bg-slate-400 hover:bg-slate-500"
