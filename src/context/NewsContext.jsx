@@ -12,6 +12,7 @@ export default function useNews() {
 export const NewsProvider = ({Children}) => { 
     const api_key = '56e0a9701f0a440c99abf2f33a9110ad';
     const URL = `https://newsapi.org/v2/${endpoint}?${requestParams}&${api_key}`;
+    const fetchData = async (endpoint, requestParams) => {}
    
     return (
         <NewsContext.Provider value={{}}>                //Pass the children component as it is . It is neccssary.
