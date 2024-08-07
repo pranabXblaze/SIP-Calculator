@@ -4,7 +4,8 @@ import Layout from "./Layout";
 import Home from "./components/Home";
 import LoginSignup from "./components/LoginComponent/LoginSignup";
 import Stocks from "./components/ExploreSection/Explore/Stocks";
-import NewsFeed from "./components/ExploreSection/Explore/NewsFeed";
+import AllNews from "./components/NewsSection/AllNews";
+import CountryNews from "./components/NewsSection/CountryNews";
 import useAuth, { AuthProvider }  from "./context/AuthContext";
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 export default function App(){
@@ -21,12 +22,13 @@ export default function App(){
               <Stocks/>
             }
             />
-            <Route path="/news" 
+            <Route path="/all-news" 
             element=
             {
-              <NewsFeed/>
+              <AllNews/>
             }
             />
+           <Route path="/country/:iso" element={<CountryNews />} /> 
           </Route>
         )
       );
