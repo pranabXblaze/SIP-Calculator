@@ -3,6 +3,7 @@ import { useParams,Link } from 'react-router-dom';
 import countries from './countries'
 import EverythingCard from './EverythingCard';
 import { BarLoader } from 'react-spinners';
+import useAuth, { AuthProvider } from '../../context/AuthContext';
 function CountryNews() {
   const params = useParams();
   const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ function CountryNews() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const {authStatus} = useAuth();
 
   function handlePrev() {
     setPage(page - 1);
@@ -50,7 +52,7 @@ function CountryNews() {
   }, [page, params.iso]);
 
   return (
-    <>
+    <AuthProvider value={{authStatus}}>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className='flex flex-col justify-center gap-4'>
       <li className="flex justify-center mt-4">
@@ -81,7 +83,7 @@ function CountryNews() {
       </div>
       <div className='grid content-center mt-5 lg:place-content-center grid-cols-1 md:gap-10 
       lg:grid-cols-2 xl:grid-cols-3 lg:gap-7 md:px-16'>
-        {!isLoading ? (
+        {(!isLoading && authStatus) ? (
           data.length > 0 ? (
             data.map((element, index) => (
               <EverythingCard
@@ -104,7 +106,7 @@ function CountryNews() {
           </div>
         )}
       </div>
-      {!isLoading && data.length > 0 && (
+      {(!isLoading && authStatus) && data.length > 0 && (
         <div className="flex justify-center gap-14 my-10 items-center">
           <button
             disabled={page <= 1}
@@ -125,7 +127,7 @@ function CountryNews() {
           </button>
         </div>
       )}
-    </>
+    </AuthProvider>
   );
 }
 

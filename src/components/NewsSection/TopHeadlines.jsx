@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import EverythingCard from './EverythingCard'
 import { BarLoader } from "react-spinners";
+import useAuth, { AuthProvider } from "../../context/AuthContext";
 
 function TopHeadlines() {
   const params = useParams();
@@ -10,7 +11,7 @@ function TopHeadlines() {
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const { authStatus } = useAuth();
   function handlePrev() {
     setPage(page - 1);
   }
@@ -50,11 +51,11 @@ function TopHeadlines() {
   }, [page, params.category]);
 
   return (
-    <>
+    <AuthProvider value={{authStatus}}>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className='grid lg:place-content-center grid-cols-1 md:gap-10 
       lg:grid-cols-2 xl:grid-cols-3 lg:gap-14 md:px-16'>
-        {!isLoading ? (
+        {(!isLoading && authStatus) ? (
           data.length > 0 ? (
             data.map((element, index) => (
               <EverythingCard
@@ -77,14 +78,14 @@ function TopHeadlines() {
           </div>
         )}
       </div>
-      {!isLoading && data.length > 0 && (
+      {(!isLoading && authStatus) && data.length > 0 && (
         <div className="flex justify-center gap-5 my-10 items-center">
           <button disabled={page <= 1} className='pagination-btn' onClick={handlePrev}>Prev</button>
           <p className='font-semibold opacity-80 text-center'>{page} of {Math.ceil(totalResults / pageSize)}</p>
           <button className='pagination-btn' disabled={page >= Math.ceil(totalResults / pageSize)} onClick={handleNext}>Next</button>
         </div>
       )}
-    </>
+    </AuthProvider>
   );
 }
 
