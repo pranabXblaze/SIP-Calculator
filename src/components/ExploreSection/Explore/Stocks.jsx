@@ -118,7 +118,7 @@ const indices = {
     'RELIANCE.NS':'Reliance-Jio part of Industries'
 }
 
-export default function Stocks({authProp}) {
+export default function Stocks() {
   const [loading, setLoading] = useState(true);
   const [stockData, setStockData] = useState([]);
   const id = useId();

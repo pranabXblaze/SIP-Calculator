@@ -51,7 +51,6 @@ function TopHeadlines() {
 
   return (
     <>
-     {/*Dropdown Menu */}
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className='grid lg:place-content-center grid-cols-1 md:gap-10 
       lg:grid-cols-2 xl:grid-cols-3 lg:gap-14 md:px-16'>

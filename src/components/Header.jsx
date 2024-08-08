@@ -3,6 +3,10 @@ import { NavLink,Link } from "react-router-dom";
 
 import { ModeToggle } from "./mode-toggle";
 import {
+  MenubarSub,
+  MenubarSeparator,
+  MenubarSubTrigger,
+  MenubarSubContent,
   Menubar,
   MenubarContent,
   MenubarItem,
@@ -63,28 +67,26 @@ export default function Header() {
           Latest News
           </MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>
-          <NavLink to={authStatus? '/top-headlines/:category': '/auth'} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) } }
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
-          }>
-            Top-Headlines 
-          </NavLink>
-          <ul className={showCategoryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"}>
+         
+          <MenubarSub className={showCategoryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"}>
+            <MenubarSubTrigger>Top Headlines</MenubarSubTrigger>
+             <MenubarSubContent>
               {category.map((element, index) => 
                  (
-                  <li key={index} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) }}>
+                  <MenubarItem key={index} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) }}>
 
-                    <Link to={"/top-headlines/" + element} className="flex gap-3 capitalize" type="btn"
+                    <Link to={"/top-headlines/" + element} className="flex gap-3 capitalize hover:text-red-500" type="btn"
                       onClick={() => {
                         setActive(!active)
                       }}>
                       {element}
                     </Link>
-                  </li>
+                  </MenubarItem>
                 )
               )}
-            </ul>
-          </MenubarItem>
+              </MenubarSubContent>
+            </MenubarSub>
+          <MenubarSeparator/>            
           <MenubarItem>
           <NavLink to={authStatus? '/country/:iso' : '/auth'}   
           className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
