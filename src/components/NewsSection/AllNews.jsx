@@ -1,14 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import EverythingCard from './EverythingCard';
 import { BarLoader } from 'react-spinners';
-import useAuth, { AuthProvider } from '../../context/AuthContext';
 function AllNews() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const {authStatus} = useAuth(); 
   function handlePrev() {
     setPage(page - 1);
   }
@@ -47,12 +45,12 @@ function AllNews() {
   }, [page]);
 
   return (
-    <AuthProvider value={{authStatus }}>
+    <>
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
       <div className='grid lg:place-content-center grid-cols-1 md:gap-10 
       lg:grid-cols-2 xl:grid-cols-3 lg:gap-7 md:px-16'>
-        {(!isLoading && authStatus) ? data.map((element, index) => (
+        {(!isLoading) ? data.map((element, index) => (
           <EverythingCard
             title={element.title}
             description={element.description}
@@ -69,14 +67,14 @@ function AllNews() {
         </div>)
         }
       </div>
-      {(!isLoading && authStatus) && data.length > 0 && (
+      {(!isLoading) && data.length > 0 && (
         <div className="flex justify-center gap-14 my-10 items-center">
           <button disabled={page <= 1} className='pagination-btn text-center' onClick={handlePrev}>&larr; Prev</button>
           <p className='font-semibold opacity-80'>{page} of {Math.ceil(totalResults / pageSize)}</p>
           <button className='pagination-btn text-center' disabled={page >= Math.ceil(totalResults / pageSize)} onClick={handleNext}>Next &rarr;</button>
         </div>
       )}
-    </AuthProvider>
+    </>
   );
 }
 
