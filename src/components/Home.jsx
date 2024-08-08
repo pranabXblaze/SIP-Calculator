@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PieChart, Pie, Cell, Legend ,Tooltip, ResponsiveContainer } from 'recharts';
 import { Link } from "react-router-dom";
-import StockDashboard from "./ExploreSection/StocksDashboard";
 import AlertDialogue from "./ExploreSection/Explore/Alert-dialogue";
 import TempStock from "./ExploreSection/TempStock";
 import ReactTypingEffect from "react-typing-effect";
@@ -9,6 +8,7 @@ import useAuth from "../context/AuthContext";
 import { ToastContainer,toast,cssTransition } from "react-toastify";
 import 'react-toastify/ReactToastify.css'
 import { AuthProvider } from "../context/AuthContext";
+import AllNews from "./NewsSection/AllNews";
 
 
 export default function Home() {
@@ -48,27 +48,12 @@ export default function Home() {
       transition: Bounce,
     })
   }
-  
-  const notify_lr = () => toast.success('✌️User now .', {
-    position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-    transition: Bounce
-  })
 
 
   useEffect(() => {
     if (chartRef.current) chartRef.current.destroy();
   }, []);
 
-  useCallback(()=> {
-    if(authStatus) return notify_lr
-  },[authStatus])
 
   const handleCalculate = () => {
     const sipAmountNum = parseFloat(sipAmount);
@@ -142,23 +127,11 @@ export default function Home() {
       theme="dark"
       transition = {Bounce}
       ></ToastContainer>
-        <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        draggable
-        pauseOnHover= {false}
-        theme="colored"
-        transition= {Bounce}
-        ></ToastContainer>
 
-      <div className='fixed bottom-2 mx-5 my-5 float-left dark:text-white md:text-lg text-sm text-blue-400'>
+      {!authStatus && <div className='fixed bottom-2 mx-5 my-5 float-left dark:text-white md:text-lg text-sm text-blue-400'>
       <AlertDialogue/>     
-      </div>
+      </div>}
     <section className="w-full px-4 py-8"> {/*Hero Section */}
-      <div className="flex flex-wrap justify-center py-8">
       <section className="flex flex-col w-full bg-primary text-white p-10 rounded-lg">
           <ReactTypingEffect
              className="text-5xl justify-center font-bold my-8"
@@ -195,11 +168,12 @@ export default function Home() {
           Get Started
         </a>
       </section>
-      <div className="flex my-4 mx-4">
+      <div className="flex flex-col my-8 mx-8 justify-center lg:flex-wrap lg:mx-4">
         {/*Stocks & Mf carousel */}
-         <StockDashboard/>
+        {/*Mutual Funds carousel */}
+        <AllNews/>
       </div>
-      </div>
+    
       </section>
       <div className="grid grid-rows-9 gap-2">
       

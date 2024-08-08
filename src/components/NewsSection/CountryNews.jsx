@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
+import countries from './countries'
 import EverythingCard from './EverythingCard';
 import { BarLoader } from 'react-spinners';
 function CountryNews() {
@@ -9,6 +10,7 @@ function CountryNews() {
   const [totalResults, setTotalResults] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
 
   function handlePrev() {
     setPage(page - 1);
@@ -50,6 +52,33 @@ function CountryNews() {
   return (
     <>
       {error && <div className="text-red-500 mb-4">{error}</div>}
+      <div className='flex flex-col justify-center gap-4'>
+      <li className="flex justify-center mt-4">
+        <Link className="no-underline font-semibold flex items-center" onClick={() => { setShowCountryDropdown(!showCountryDropdown) }}>Country </Link>
+      </li>
+      <p className='text-xl text-center'>Select a country to continue.</p>
+
+
+      <ul className={`${showCountryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"} flex flex-wrap gap-2`}>
+              {countries.map((element, index) => 
+                (
+                  <li key={index} onClick={() => { setShowCountryDropdown(!showCountryDropdown) }} className='border border-gray-300 px-2 rounded'>
+                    <Link to={"/country/" + element?.iso_2_alpha} className="flex gap-3" type="btn"
+                      onClick={() => {
+                        setActive(!active)
+                      }}>
+                      <img
+                        src={element?.png}
+                        srcSet={`https://flagcdn.com/32x24/${element?.iso_2_alpha}.png 2x`}
+                   
+                        alt={element?.countryName} />
+                      <span>{element?.countryName}</span>
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+      </div>
       <div className="my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3">
         {!isLoading ? (
           data.length > 0 ? (
@@ -69,7 +98,7 @@ function CountryNews() {
             <p>No news articles found for this criteria.</p>
           )
         ) : (
-          <BarLoader />
+          <BarLoader color="#219EBC" width={200}/>
         )}
       </div>
       {!isLoading && data.length > 0 && (

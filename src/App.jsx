@@ -6,6 +6,7 @@ import LoginSignup from "./components/LoginComponent/LoginSignup";
 import Stocks from "./components/ExploreSection/Explore/Stocks";
 import AllNews from "./components/NewsSection/AllNews";
 import CountryNews from "./components/NewsSection/CountryNews";
+import TopHeadlines from "./components/NewsSection/TopHeadlines";
 import useAuth, { AuthProvider }  from "./context/AuthContext";
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 export default function App(){
@@ -29,6 +30,7 @@ export default function App(){
             }
             />
            <Route path="/country/:iso" element={<CountryNews />} /> 
+           <Route path="/top-headlines/:category" element={<TopHeadlines />} />
           </Route>
         )
       );

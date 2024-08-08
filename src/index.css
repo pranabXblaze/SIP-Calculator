@@ -58,3 +58,44 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .btn {
+    background-color: #f05878;
+    color: #414141;
+    width: 130.51px;
+    height: 50px;
+    border-top-right-radius: 4px;
+    margin-left: -2px;
+    border-bottom-right-radius: 4px;
+}
+
+.pagination-btn {
+    background-color: #f05878;
+    color: #414141;
+    width: 110px;
+    height: 50px;
+    border-radius: 34px;
+}
+
+.everything-card {
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.everything-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease-in-out;
+    background: var(--primary);
+    box-shadow: 0 0 11px grey; 
+}
+
+.everything-card-img {
+    width: 280px;
+    height: 150px;
+    border-radius: 10px;
+}

@@ -51,10 +51,10 @@ function TopHeadlines() {
 
   return (
     <>
-
+     {/*Dropdown Menu */}
       {error && <div className="text-red-500 mb-4">{error}</div>}
-      <div className='my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3 '>
-        {console.log(data)}
+      <div className='grid lg:place-content-center grid-cols-1 md:gap-10 
+      lg:grid-cols-2 xl:grid-cols-3 lg:gap-14 md:px-16'>
         {!isLoading ? (
           data.length > 0 ? (
             data.map((element, index) => (
@@ -73,13 +73,13 @@ function TopHeadlines() {
             <p>No articles found for this category or criteria.</p>
           )
         ) : (
-          <BarLoader color="#219EBC" width={200}/>
+          <BarLoader color="#219EBC" width={200} />
         )}
       </div>
       {!isLoading && data.length > 0 && (
-        <div className="flex justify-center gap-14 my-10 items-center">
+        <div className="flex justify-center gap-5 my-10 items-center">
           <button disabled={page <= 1} className='pagination-btn' onClick={handlePrev}>Prev</button>
-          <p className='font-semibold opacity-80'>{page} of {Math.ceil(totalResults / pageSize)}</p>
+          <p className='font-semibold opacity-80 text-center'>{page} of {Math.ceil(totalResults / pageSize)}</p>
           <button className='pagination-btn' disabled={page >= Math.ceil(totalResults / pageSize)} onClick={handleNext}>Next</button>
         </div>
       )}

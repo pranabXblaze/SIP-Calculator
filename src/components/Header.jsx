@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink,Link } from "react-router-dom";
 
 import { ModeToggle } from "./mode-toggle";
@@ -19,11 +19,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import 'react-toastify/ReactToastify.css'
 import useAuth, { AuthProvider } from "../context/AuthContext";
 export default function Header() {
-  
   const {authStatus, user,handleLogout } = useAuth();
-
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   //console.log(auth)
   // console.log(authStatus);
+  let category = ["business", "entertainment", "general", "health", "science", "sports", "technology","politics"]
 
   return (
     <AuthProvider value={{authStatus, user, handleLogout}}>
@@ -39,11 +39,7 @@ export default function Header() {
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-        <NavLink to={authStatus? '/stocks': '/auth'}   
-          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent hover:text-orange-700`
-                    }>
           Explore
-          </NavLink>
         </MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
@@ -54,26 +50,51 @@ export default function Header() {
           </NavLink>
           </MenubarItem>
           <MenubarItem>
-          <NavLink to={authStatus? '/news' : '/auth'}   
+          <NavLink to={authStatus? '/all-news' : '/auth'}   
           className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
                      }>
-          Latest Buzz
+          Latest News
           </NavLink>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Latest Buzz</MenubarTrigger>
+        <MenubarTrigger>
+          Latest News
+          </MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-          <NavLink to={authStatus? '/news' : '/auth'}   
+          <NavLink to={authStatus? '/top-headlines/:category': '/auth'} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) } }
+          className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
+          }>
+            Top-Headlines 
+          </NavLink>
+          <ul className={showCategoryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"}>
+              {category.map((element, index) => 
+                 (
+                  <li key={index} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) }}>
+
+                    <Link to={"/top-headlines/" + element} className="flex gap-3 capitalize" type="btn"
+                      onClick={() => {
+                        setActive(!active)
+                      }}>
+                      {element}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          </MenubarItem>
+          <MenubarItem>
+          <NavLink to={authStatus? '/country/:iso' : '/auth'}   
           className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
                      }>
-          Latest Buzz
+          Country News
           </NavLink>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
+      
     </Menubar>
     <div className="flex">
         <ModeToggle/>

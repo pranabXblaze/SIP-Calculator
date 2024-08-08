@@ -16,7 +16,7 @@ function AllNews() {
     setPage(page + 1);
   }
 
-  let pageSize = 12;
+  let pageSize = 9;
 
   useEffect(() => {
     setIsLoading(true);
@@ -61,7 +61,7 @@ function AllNews() {
             source={element.source.name}
             key={index}
           />
-        )) : <BarLoader />}
+        )) : <BarLoader color="#219EBC" width={200}/>}
       </div>
       {!isLoading && data.length > 0 && (
         <div className="pagination flex justify-center gap-14 my-10 items-center">

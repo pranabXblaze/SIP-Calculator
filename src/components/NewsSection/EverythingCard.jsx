@@ -2,11 +2,11 @@ import React from "react";
 
 function Card(props) {
   return (
-    <div className="everything-card mt-10">
+    <div className="everything-card w-4/5 h-3/4 my-5 md:w-1/2">
       <div className="everything-card flex flex-wrap p-5 gap-1 mb-1">
         <b className="title">{props.title}</b>
-        <div className="everything-card-img mx-auto">
-          <img className="everything-card-img" src={props.imgUrl} alt="img" />
+        <div className="mx-auto">
+          <img className="w-auto h-fit rounded-md" src={props.imgUrl} alt="img" />
         </div>
         <div className="description">
           <p className="description-text leading-7">

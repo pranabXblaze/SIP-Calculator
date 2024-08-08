@@ -205,6 +205,6 @@ export default function Stocks({authProp}) {
     }
     </div>
     </div>
-  /</AuthProvider>
+  </AuthProvider>
   )
 }
