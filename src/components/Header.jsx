@@ -67,15 +67,14 @@ export default function Header() {
           Latest News
           </MenubarTrigger>
         <MenubarContent>
-         
-          <MenubarSub className={showCategoryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"}>
+          <MenubarSub className={`${showCategoryDropdown ? 'p-2 ': ''}`}>
             <MenubarSubTrigger>Top Headlines</MenubarSubTrigger>
              <MenubarSubContent>
               {category.map((element, index) => 
                  (
                   <MenubarItem key={index} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) }}>
 
-                    <Link to={"/top-headlines/" + element} className="flex gap-3 capitalize hover:text-red-500" type="btn"
+                    <Link to={`/top-headlines/${element}`} className="flex gap-3 capitalize hover:text-red-500" type="btn"
                       onClick={() => {
                         setActive(!active)
                       }}>
