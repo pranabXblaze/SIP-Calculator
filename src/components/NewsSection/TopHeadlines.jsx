@@ -72,7 +72,9 @@ function TopHeadlines() {
             <p>No articles found for this category or criteria.</p>
           )
         ) : (
-          <BarLoader color="#219EBC" width={200} />
+          <div className='relative mx-[520px] my-[200px]'>
+          <BarLoader color="#219EBC" width={400}/>
+          </div>
         )}
       </div>
       {!isLoading && data.length > 0 && (

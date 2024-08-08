@@ -79,7 +79,8 @@ function CountryNews() {
               )}
             </ul>
       </div>
-      <div className="my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3">
+      <div className='grid content-center mt-5 lg:place-content-center grid-cols-1 md:gap-10 
+      lg:grid-cols-2 xl:grid-cols-3 lg:gap-7 md:px-16'>
         {!isLoading ? (
           data.length > 0 ? (
             data.map((element, index) => (
@@ -98,7 +99,9 @@ function CountryNews() {
             <p>No news articles found for this criteria.</p>
           )
         ) : (
-          <BarLoader color="#219EBC" width={200}/>
+          <div className='relative mx-[520px] my-[200px]'>
+          <BarLoader color="#219EBC" width={300}/>
+          </div>
         )}
       </div>
       {!isLoading && data.length > 0 && (

@@ -2,7 +2,7 @@ import React from "react";
 
 function Card(props) {
   return (
-    <div className="everything-card w-4/5 h-3/4 my-5 md:w-1/2">
+    <div className="everything-card w-11/12 h-3/4 my-5 md:w-4/5 md:h-full">
       <div className="everything-card flex flex-wrap p-5 gap-1 mb-1">
         <b className="title">{props.title}</b>
         <div className="mx-auto">
