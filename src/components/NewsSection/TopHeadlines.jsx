@@ -11,7 +11,8 @@ function TopHeadlines() {
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { authStatus } = useAuth();
+  const {authStatus} = useAuth()
+  
   function handlePrev() {
     setPage(page - 1);
   }
@@ -52,6 +53,7 @@ function TopHeadlines() {
 
   return (
     <AuthProvider value={{authStatus}}>
+      {console.log(authStatus)}
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className='grid lg:place-content-center grid-cols-1 md:gap-10 
       lg:grid-cols-2 xl:grid-cols-3 lg:gap-14 md:px-16'>
@@ -73,8 +75,8 @@ function TopHeadlines() {
             <p>No articles found for this category or criteria.</p>
           )
         ) : (
-          <div className='relative mx-[520px] my-[200px]'>
-          <BarLoader color="#219EBC" width={400}/>
+          <div className='relative lg:mx-[520px] lg:my-[200px] mx-8 my-20'>
+          <BarLoader color="#219EBC" width={250}/>
           </div>
         )}
       </div>

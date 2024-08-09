@@ -12,8 +12,7 @@ function CountryNews() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-  const {authStatus} = useAuth();
-
+  const {authStatus} = useAuth
   function handlePrev() {
     setPage(page - 1);
   }
@@ -65,13 +64,11 @@ function CountryNews() {
               {countries.map((element, index) => 
                 (
                   <li key={index} onClick={() => { setShowCountryDropdown(!showCountryDropdown) }} className='border border-gray-300 px-2 rounded'>
-                    <Link to={"/country/" + element?.iso_2_alpha} className="flex gap-3" type="btn"
-                      onClick={() => {
-                        setActive(!active)
-                      }}>
+                    <Link to={`/country/${element?.iso_2_alpha}`} className="flex gap-3" type="btn"
+                      >
                       <img
                         src={element?.png}
-                        srcSet={`https://flagcdn.com/32x24/${element?.iso_2_alpha}.png 2x`}
+                        srcSet={`https://flagcdn.com/32x24/${element?.iso_2_alpha}.png `}
                    
                         alt={element?.countryName} />
                       <span>{element?.countryName}</span>
@@ -101,8 +98,8 @@ function CountryNews() {
             <p>No news articles found for this criteria.</p>
           )
         ) : (
-          <div className='relative mx-[520px] my-[200px]'>
-          <BarLoader color="#219EBC" width={300}/>
+          <div className='relative lg:mx-[520px] lg:my-[200px] mx-8 my-20'>
+          <BarLoader color="#219EBC" width={250}/>
           </div>
         )}
       </div>

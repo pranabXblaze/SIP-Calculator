@@ -62,8 +62,8 @@ function AllNews() {
             key={index}
           />
         )) :  
-        (<div className='relative mx-[520px] my-[200px]'>
-        <BarLoader color="#219EBC" width={300}/>
+        (<div className='relative lg:mx-[520px] lg:my-[200px] mx-10 my-20'>
+        <BarLoader color="#219EBC" width={250}/>
         </div>)
         }
       </div>

@@ -73,13 +73,11 @@ export default function Header() {
               {category.map((element, index) => 
                  (
                   <MenubarItem key={index} onClick={() => { setShowCategoryDropdown(!showCategoryDropdown) }}>
-
-                    <Link to={`/top-headlines/${element}`} className="flex gap-3 capitalize hover:text-red-500" type="btn"
-                      onClick={() => {
-                        setActive(!active)
-                      }}>
+                    <NavLink to={authStatus? `/top-headlines/${element}`: '/auth'} 
+                    className={({isActive}) =>`${isActive ? "text-orange-700" : "text-white"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
+                     }>
                       {element}
-                    </Link>
+                    </NavLink>
                   </MenubarItem>
                 )
               )}
@@ -87,7 +85,7 @@ export default function Header() {
             </MenubarSub>
           <MenubarSeparator/>            
           <MenubarItem>
-          <NavLink to={authStatus? '/country/:iso' : '/auth'}   
+          <NavLink to={authStatus? '/country/in' : '/auth'}   
           className={({isActive}) =>`${isActive ? "text-orange-700" : "text-gray-500"} lg:hover:bg-transparent lg:border-0 hover:text-orange-700`
                      }>
           Country News

@@ -175,9 +175,9 @@ export default function Home() {
       </div>
     
       </section>
-      <div className="grid grid-rows-9 gap-2">
+      <div className="grid grid-rows-6 gap-2">
       
-      <div className="row-span-5 text-center w-[320px] sm:h-full sm:w-[620px] mx-auto bg-secondary border-none space-y-2 rounded-lg p-4 shadow-xl">
+      <div className="row-span-3 text-center w-[320px] h-min md:w-[620px] mx-auto bg-secondary border-none space-y-2 rounded-lg p-4 shadow-xl">
       <h2><strong>SIP Calculator – Systematic Investment Plan Calculator</strong></h2>
       <p><span className="font-medium">   
         Prospective investors can think that SIPs and mutual funds are the same.
@@ -225,7 +225,7 @@ export default function Home() {
          <p><span className="font-medium">The rate of interest on a SIP will differ as per market conditions. 
           It may increase or decrease, which will change the estimated returns.</span></p>
       </div>
-      <div className="row-span-4 flex flex-col justify-center items-center">
+      <div className="row-span-3 flex flex-col justify-center items-center">
         <ReactTypingEffect
              className="text-5xl justify-center font-bold my-8"
               text={['Relevant Stocks..','Register now.']}
@@ -253,7 +253,7 @@ export default function Home() {
       </div>
       </div>
       {/* SIP Calculator Section */}
-      <section id="calculator" className="mb-8 shadow-xl shadow-slate-600 rounded-xl border-none outline-2 bg-accent">
+      <section id="calculator" className="my-8 shadow-xl shadow-slate-600 rounded-xl border-none outline-2 bg-accent">
       <div className="flex justify-start">
       <Link
               className={`hover:underline text-black font-semibold py-4 px-6 my-3 mx-4 rounded-xl text-center ${
