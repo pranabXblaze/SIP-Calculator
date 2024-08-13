@@ -21,7 +21,7 @@ export default function Footer() {
               <a href="/stocks" className="hover:textwhite transition-colors duration-300">Stocks</a>
             </li>
             <li>
-              <a href="/mutual-funds" className="hover:textwhite transition-colors duration-300">Mutual Funds</a>
+              <a href="/" className="hover:textwhite transition-colors duration-300">Mutual Funds</a>
             </li>
           </ul>
         </div>
