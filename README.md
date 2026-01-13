@@ -31,7 +31,7 @@ Where:
 	
 2.	Clone the Repository
 ```
-git clone [https://github.com/your-username/sip-Calculator.git]([https://github.com/your-username/stocks-news-sip-calculator.git](https://github.com/pranabXblaze/SIP-Calculator.git)
+git clone https://github.com/pranabXblaze/SIP-Calculator/
 cd stocks-news-sip-calculator
 ```
 
@@ -69,7 +69,9 @@ SIP Calculator	Stock News Feed
 3.	Commit your changes (git commit -m 'Add some AmazingFeature').
 4.	Push to the branch (git push origin feature/AmazingFeature).
 5.	Open a Pull Request.
+
 📜 License
 Distributed under the MIT License. See LICENSE for more information.
 Disclaimer: The calculations provided by this tool are estimates and do not guarantee actual returns. Stock market investments are subject to market risks. Please consult with a financial advisor before investing.
+
 
