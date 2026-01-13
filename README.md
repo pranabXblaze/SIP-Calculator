@@ -26,31 +26,42 @@ Where:
 ·	Deployment:Vercel for fast global delivery.
 ·	News Integration: Fetch API used to pull live financial data.
 💻 Local Development
-Follow these steps to set up the project locally:
-1.	
+
+1. Follow these steps to set up the project locally:
+	
 2.	Clone the Repository
-
-git clone [https://github.com/your-username/stocks-news-sip-calculator.git](https://github.com/your-username/stocks-news-sip-calculator.git)
-
+```
+git clone [https://github.com/your-username/sip-Calculator.git]([https://github.com/your-username/stocks-news-sip-calculator.git](https://github.com/pranabXblaze/SIP-Calculator.git)
 cd stocks-news-sip-calculator
-3.	
+```
+
 4.	Install Dependencies
-
+```
 npm install
-5.	
+```
+	
 6.	Environment Setup
-
 Create a .env file in the root directory and add your news API credentials:
 
+```
 REACT_APP_NEWS_API_KEY=your_actual_api_key_here
-7.	
-8.	Run the App
+```
 
+6.	Run the App
+```
 npm start
-9.	The app will be available at http://localhost:3000.
+```
+9.	The app will be available at
+  ```
+    http://localhost:3000.
+  ```
 📱 Screenshots
+
 SIP Calculator	Stock News Feed
-	
+<img width="1900" height="817" alt="image" src="https://github.com/user-attachments/assets/70961146-e6e8-460d-99f5-2b345ae32545" />
+
+<img width="1906" height="905" alt="image" src="https://github.com/user-attachments/assets/25dae44d-cba0-415b-a3f2-1784d2a333fd" />
+
 
 🤝 Contributing
 1.	Fork the project.
@@ -61,3 +72,4 @@ SIP Calculator	Stock News Feed
 📜 License
 Distributed under the MIT License. See LICENSE for more information.
 Disclaimer: The calculations provided by this tool are estimates and do not guarantee actual returns. Stock market investments are subject to market risks. Please consult with a financial advisor before investing.
+
